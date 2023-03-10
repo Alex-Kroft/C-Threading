@@ -16,7 +16,6 @@ namespace EnergyThreading
 
         public void delegatePower()
         {
-            
         }
 
         public void producePower()

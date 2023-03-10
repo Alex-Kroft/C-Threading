@@ -9,14 +9,18 @@ namespace EnergyThreading
 {
     public class City
     {
+        public List<House> houses;
         public City() {
-            var Houses = new ArrayList();
-            Generator generator = new Generator();
+            houses = new List<House>();
+            Generator generator = new Generator("Alex");
         }
 
-        private void createHouse()
+        private void createHouse(House house)
         {
-
+            var highestID = houses.Any() ? houses.Max(x => x.id) : 1;
+            house.id = highestID + 1;
+            houses.Add(house);
+        
         }
 
         public void update()

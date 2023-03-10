@@ -8,9 +8,8 @@ namespace EnergyThreading
 {
     public class House
     {
-        int id;
-        public House(int ID) {
-            int id = ID;
+        public int id { get; set; }
+        public House() {
         }
 
         public float updateElecricityDemand()
