@@ -1,0 +1,20 @@
+﻿<Page
+    x:Class="EnergyThreading.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EnergyThreading"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Button Content="Button" Margin="1049,154,0,0" VerticalAlignment="Top" Height="74" Width="212" Click="Button_Click"/>
+        <Button Content="Button" Margin="776,149,0,0" VerticalAlignment="Top" Height="74" Width="190"/>
+        <TextBox HorizontalAlignment="Left" Margin="776,98,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="46" Width="485"/>
+        <TextBox HorizontalAlignment="Left" Margin="776,47,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="46" Width="485"/>
+        <Image HorizontalAlignment="Left" Height="572" Margin="62,390,0,0" VerticalAlignment="Top" Width="904"/>
+        <Image HorizontalAlignment="Left" Height="572" Margin="1155,390,0,0" VerticalAlignment="Top" Width="315"/>
+
+    </Grid>
+</Page>
