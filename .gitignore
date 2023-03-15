@@ -2,6 +2,10 @@
 *.rsuser
 *.suo
 *.user
+_ReSharper.*
+bin
+obj
+packages
 *.userosscache
 *.sln.docstates
 
@@ -26,8 +30,6 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
-**/bin/*
-**/obj/*
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -189,7 +191,7 @@ publish/
 # in these scripts will be unencrypted
 PublishScripts/
 
-# NuGet Packages
+# NuGet 
 *.nupkg
 # NuGet Symbol Packages
 *.snupkg
