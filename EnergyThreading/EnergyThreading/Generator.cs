@@ -14,8 +14,15 @@ namespace EnergyThreading
             name = Name;
         }
 
-        public void delegatePower()
+        public void delegatePower(House house)
         {
+            if(powerSupply < 0)
+            {
+                for (; powerSupply <= 0; powerSupply--)
+                {
+                    house.demand--;
+                }
+            }
         }
 
         public void producePower()

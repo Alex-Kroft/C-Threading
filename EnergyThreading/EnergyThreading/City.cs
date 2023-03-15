@@ -35,6 +35,10 @@ namespace EnergyThreading
 
         private void supplyDemand()
         {
+            foreach(var house in houses)
+            {
+
+            }
 
         }
 

@@ -8,20 +8,33 @@ namespace EnergyThreading
 {
     public class House
     {
+
+        public float demand;
         public int id { get; set; }
         public House() {
+            demand = 10;
         }
 
         public float updateElecricityDemand()
         {
-            float demand = 10;
+            if(demand <= 9)
+            {
+                demand = 10;
+            }
 
             return demand;
         }
 
         public Boolean checkIfSatisfied()
         {
-            return true;
+            if (demand == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;   
+            }
         }
     }
 }
