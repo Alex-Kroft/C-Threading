@@ -8,14 +8,23 @@ namespace EnergyThreading
 {
     public class House
     {
+        public const float HouseBaseDemand = 10;
+        public const float HouseDemandVariance = 5;
         public int id { get; set; }
-        public House() {
+        public float currentElectricity { get; set; }
+
+        public House(int id) 
+        {
+            currentElectricity = 0;
+            this.id = id;
         }
 
         public float updateElecricityDemand()
         {
-            float demand = 10;
-
+            float demand = HouseBaseDemand;
+            currentElectricity = 0;
+            Random rnd = new Random();
+            demand += rnd.Next(-HouseDemandVariance, HouseDemandVariance);
             return demand;
         }
 

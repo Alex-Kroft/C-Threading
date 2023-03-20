@@ -9,7 +9,6 @@ namespace EnergyThreading
 {
     public class Instance
     {
-        private Boolean singleThreaded;
         private Stopwatch stopwatch;
         private City city;
 

@@ -9,18 +9,24 @@ namespace EnergyThreading
 {
     public class City
     {
-        public List<House> houses;
-        public City() {
+        private List<House> houses;
+        private Generator generator;
+        private bool singleThread;
+
+        public City(int houseAmount, bool singleThread) {
             houses = new List<House>();
+            createHouses(houseAmount);
             Generator generator = new Generator("Alex");
+            this.singleThread = singleThread;
         }
 
-        private void createHouse(House house)
+        private void createHouses(int amount)
         {
-            var highestID = houses.Any() ? houses.Max(x => x.id) : 1;
-            house.id = highestID + 1;
-            houses.Add(house);
-        
+            //Should this also be done via threading when multithreaded is chosen?
+            for (int i = 0; i < amount; i++)
+            {
+                houses.Add(new House(i))
+            }
         }
 
         public void update()
