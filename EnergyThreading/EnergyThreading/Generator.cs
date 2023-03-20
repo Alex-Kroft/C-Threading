@@ -15,11 +15,9 @@ namespace EnergyThreading
             name = Name;
         }
 
-        public void delegatePower()
+        public void delegatePower(float wantedEnergy)
         {
-            //Now I am feeling a bit lost about the idea. The city would be the one distributing energy,
-            //but then do they need to be as separate packages to each house?
-            //Or should the city have a float that stores the produced energy?
+            powerSupply -= wantedEnergy;
         }
 
         public void producePower(float neededEnergy)
