@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,9 +11,14 @@ namespace EnergyThreading
     {
         public const float HouseBaseDemand = 10;
         public const int HouseDemandVariance = 500;
+
         public int id { get; set; }
         public float currentElectricity { get; set; }
         public float currentDemand { get; set; }
+
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int size { get; set; }
 
         public House(int id) 
         {
@@ -29,7 +35,7 @@ namespace EnergyThreading
 
         public Boolean isSatisfied()
         {
-            return currentElectricity == currentDemand;
+            return currentElectricity >= currentDemand;
         }
     }
 }

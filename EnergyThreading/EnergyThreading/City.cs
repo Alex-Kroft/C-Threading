@@ -26,12 +26,20 @@ namespace EnergyThreading
             storedEnergy = 0;
         }
 
+        public List<House> getHouses()
+        {
+            return houses;
+        }
         private void createHouses(int amount)
         {
             //Should this also be done via threading when multithreaded is chosen?
             for (int i = 0; i < amount; i++)
             {
                 House house = new House(i);
+                house.X = i * 50;
+                house.Y = 0;
+                house.size = 50;
+
                 houses.Add(house);
                 if (!singleThread)
                 {

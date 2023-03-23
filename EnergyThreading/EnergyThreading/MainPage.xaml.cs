@@ -22,9 +22,12 @@ namespace EnergyThreading
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public Instance instance;
+
         public MainPage()
         {
             this.InitializeComponent();
+            instance = new Instance(MyFrame);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

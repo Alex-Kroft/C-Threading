@@ -6,15 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="900" Height="600">
 
     <Grid>
-        <Button Content="Button" Margin="1049,154,0,0" VerticalAlignment="Top" Height="74" Width="212" Click="Button_Click"/>
-        <Button Content="Button" Margin="776,149,0,0" VerticalAlignment="Top" Height="74" Width="190"/>
-        <TextBox HorizontalAlignment="Left" Margin="776,98,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="46" Width="485"/>
-        <TextBox HorizontalAlignment="Left" Margin="776,47,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="46" Width="485"/>
-        <Image HorizontalAlignment="Left" Height="572" Margin="62,390,0,0" VerticalAlignment="Top" Width="904"/>
-        <Image HorizontalAlignment="Left" Height="572" Margin="1155,390,0,0" VerticalAlignment="Top" Width="315"/>
-
+        <Button Content="Button" Margin="585,137,0,0" VerticalAlignment="Top" Height="74" Width="212" Click="Button_Click"/>
+        <Button Content="Button" Margin="312,137,0,0" VerticalAlignment="Top" Height="74" Width="190"/>
+        <TextBox HorizontalAlignment="Left" Margin="312,86,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="46" Width="485"/>
+        <TextBox HorizontalAlignment="Left" Margin="312,35,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="46" Width="485"/>
+        <Frame x:Name="MyFrame" Height="315" Margin="62,254,338,0" VerticalAlignment="Top"/>
+        <Image Source="Assets/generator.png" HorizontalAlignment="Left" Height="315" Margin="691,0,0,30" VerticalAlignment="Bottom" Width="163" UseLayoutRounding="True" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" />
     </Grid>
 </Page>
