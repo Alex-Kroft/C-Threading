@@ -36,17 +36,14 @@ namespace EnergyThreading
             for (int i = 0; i < amount; i++)
             {
                 House house = new House(i);
-                house.X = i * 50;
-                house.Y = 0;
-                house.size = 50;
-
+            
                 houses.Add(house);
-                if (!singleThread)
-                {
-                    Thread thread = new Thread(supplyDemandSingleHouse);
-                    thread.Start(i);
-                    threads.Add(thread);
-                }
+                //if (!singleThread)
+                //{
+                //    Thread thread = new Thread(supplyDemandSingleHouse);
+                //    thread.Start(i);
+                //    threads.Add(thread);
+                //}
             }
         }
 

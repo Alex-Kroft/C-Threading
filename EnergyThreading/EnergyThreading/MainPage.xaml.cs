@@ -22,20 +22,21 @@ namespace EnergyThreading
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public Instance instance;
+        private Instance instance;
 
         public MainPage()
         {
             this.InitializeComponent();
-            instance = new Instance(MyFrame);
-            
         }
 
        
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            int amountOfHouses = Convert.ToInt32(TextBox1.Text);
-            instance.update(amountOfHouses);
+        {  
+            if (instance == null)
+            {
+                // pass time of day & amount of houses to instance
+                instance = new Instance(MyFrame);
+            }
         }
 
         private void MyFrame_Navigated(object sender, NavigationEventArgs e)

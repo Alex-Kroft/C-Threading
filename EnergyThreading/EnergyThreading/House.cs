@@ -16,10 +16,6 @@ namespace EnergyThreading
         public float currentElectricity { get; set; }
         public float currentDemand { get; set; }
 
-        public int X { get; set; }
-        public int Y { get; set; }
-        public int size { get; set; }
-
         public House(int id) 
         {
             updateElecricityDemand();

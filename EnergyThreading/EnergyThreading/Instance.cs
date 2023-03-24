@@ -7,8 +7,9 @@ using System.Diagnostics;
 using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Shapes;
+using Windows.System;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace EnergyThreading
 {
@@ -23,21 +24,30 @@ namespace EnergyThreading
         public Instance(Frame frame)
         {
             this.frame = frame;
+            CompositionTarget.Rendering += OnCompositionTargetRendering;
+            this.city = new City(5, true);
         }
 
-        public void update(int AmountofHouses)
+        private void OnCompositionTargetRendering(object sender, object e)
         {
-            city.createHouses(5);
-            draw(this.frame);
+            draw(); //or change to the update() for stuff?
+        }
+
+        public void update()
+        {
+           
         }
 
         public void initialize()
         {
+
         }
 
-        private void draw(Frame frame)
+        public void draw()
         {
             Canvas canvas = new Canvas();
+            canvas.Width = frame.ActualWidth;
+            canvas.Height = frame.ActualHeight;
 
             int housesPerRow = 5;
             int houseCount = city.getHouses().Count;
@@ -55,17 +65,19 @@ namespace EnergyThreading
                 rect.Width = columnWidth - 10;
                 rect.Height = rowHeight - 10;
 
+                /**
                 ImageBrush brush = new ImageBrush();
+                
                 if (house.isSatisfied())
                 {
-                    brush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/house_green.svg"));
+                    brush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/house_green.png"));
                     rect.Fill = brush;
-                }
-                else
-                {
-                    brush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/house_red.svg"));
-                    rect.Fill = brush;
-                }
+                } else {
+                    brush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/house_red.png"));
+                   rect.Fill = brush;
+                } **/
+
+                rect.Fill = new SolidColorBrush(Colors.Red);
 
                 Canvas.SetLeft(rect, currentColumn * columnWidth);
                 Canvas.SetTop(rect, currentRow * rowHeight);
@@ -79,7 +91,7 @@ namespace EnergyThreading
                 }
             }
 
-            frame.Content = canvas; 
+            this.frame.Content = canvas;
         }
 
        private void loadContent()
