@@ -28,9 +28,22 @@ namespace EnergyThreading
         {
             this.InitializeComponent();
             instance = new Instance(MyFrame);
+            
         }
 
+       
         private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            int amountOfHouses = Convert.ToInt32(TextBox1.Text);
+            instance.update(amountOfHouses);
+        }
+
+        private void MyFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
         }

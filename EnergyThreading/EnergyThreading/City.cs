@@ -30,7 +30,7 @@ namespace EnergyThreading
         {
             return houses;
         }
-        private void createHouses(int amount)
+        public void createHouses(int amount)
         {
             //Should this also be done via threading when multithreaded is chosen?
             for (int i = 0; i < amount; i++)

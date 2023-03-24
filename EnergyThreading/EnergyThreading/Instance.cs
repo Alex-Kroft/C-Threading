@@ -25,14 +25,14 @@ namespace EnergyThreading
             this.frame = frame;
         }
 
-        private void update()
+        public void update(int AmountofHouses)
         {
-
+            city.createHouses(5);
+            draw(this.frame);
         }
 
-        private void initialize()
+        public void initialize()
         {
-
         }
 
         private void draw(Frame frame)
