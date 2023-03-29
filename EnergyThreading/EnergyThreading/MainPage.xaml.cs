@@ -75,16 +75,9 @@ namespace EnergyThreading
 
         }
 
-        public async void Button_Click_Singlethread(object sender, RoutedEventArgs e)
+        public void Button_Click_Singlethread(object sender, RoutedEventArgs e)
         {
-            if (instance.getCity.getSingleThread == false)
-            {
-                instance.getCity.setSingleThread(true);
-            }
-            while (instance.getCity.getSingleThread)
-            {
-                await Task.Delay(100);
-            }
+           instance.update();
         }
         private void MyFrame_Navigated(object sender, NavigationEventArgs e)
         {
@@ -115,6 +108,11 @@ namespace EnergyThreading
             {
                 await Task.Delay(100);
             }
+        }
+
+        private void newbutton_Click(object sender, RoutedEventArgs e)
+        {
+            instance.producePower();
         }
     }
 }

@@ -42,6 +42,7 @@ namespace EnergyThreading
         {
             totalDemand = 0;
             city.calculateTotalDemand();
+   
             totalDemand = city.total;
         }
 
@@ -104,9 +105,9 @@ namespace EnergyThreading
             this.frame.Content = canvas;
         }
 
-       private void loadContent()
+       private void producePower()
        {
-
+            city.produceEnergyForHouses();
        }
 
        public void timeCounter()

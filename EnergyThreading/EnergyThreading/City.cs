@@ -76,9 +76,29 @@ namespace EnergyThreading
 
         }
 
-        private void supplyDemandAllHouses()
+        public void produceEnergyForHouses()
         {
-
+            if (singleThread == true)
+            {
+                foreach (House house in houses)
+                {
+                    generator.producePower(house.currentDemand);
+                }
+            }
+            else
+            {
+                List<Thread> threads = new List<Thread>();
+                foreach (House house in houses)
+                {
+                    Thread t = new Thread(() => generator.producePower(house.currentDemand));
+                    threads.Add(t);
+                    t.Start();
+                }
+                foreach (Thread t in threads)
+                {
+                    t.Join();
+                }
+            }
         }
 
         private void supplyDemandSingleHouse(object houseId)
