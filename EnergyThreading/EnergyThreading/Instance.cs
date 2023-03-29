@@ -32,7 +32,7 @@ namespace EnergyThreading
             this.totalDemand = city.total;
 
         }
-
+        public City getCity { get { return city; } }
         private void OnCompositionTargetRendering(object sender, object e)
         {
             draw(); //or change to the update() for stuff?

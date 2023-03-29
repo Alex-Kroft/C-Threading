@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -23,6 +24,7 @@ namespace EnergyThreading
     public sealed partial class MainPage : Page
     {
         private Instance instance;
+        public TimeSpan _timeOfDay;
 
         public MainPage()
         {
@@ -33,12 +35,66 @@ namespace EnergyThreading
                 instance = new Instance(MyFrame);
 
             }
+            _timeOfDay = checkTime();
         }
 
-       
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {  
+        public void amountOfHouses_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            instance.update();
+            int houseAmount = (int)e.AddedItems[0];
+            if (houses.SelectedItem != null)
+            {
+                //ComboBoxItem cbi1 = (ComboBoxItem)(sender as ComboBox).SelectedItem;  
+                ComboBoxItem cbi = (ComboBoxItem)houses.SelectedItem;
+                int selectedAmount = (int)cbi.Content;
+            }
+        }
 
+        /*private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            instance.update();
+            houses.Text = instance.totalDemand.ToString();
+        }*/
+
+        public TimeSpan checkTime()
+        {
+            DateTime _startStopwatch;
+            _startStopwatch = DateTime.Now;
+            TimeSpan elapsed = DateTime.Now - _startStopwatch;
+            if (timePicker.SelectedTime != null)
+            {
+                TimeSpan currentTimeOfDay = (TimeSpan)(elapsed + timePicker.SelectedTime);
+                return currentTimeOfDay;
+            }
+            else
+            {
+                return TimeSpan.Zero;
+            }
+
+        }
+
+        public async void Button_Click_Singlethread(object sender, RoutedEventArgs e)
+        {
+            if (instance.getCity.getSingleThread == false)
+            {
+                instance.getCity.setSingleThread(true);
+            }
+            while (instance.getCity.getSingleThread)
+            {
+                await Task.Delay(100);
+            }
+        }
+
+        public async void Button_Click_Multithread(object sender, RoutedEventArgs e)
+        {
+            if (instance.getCity.getSingleThread == true)
+            {
+                instance.getCity.setSingleThread(false);
+            }
+            while (!instance.getCity.getSingleThread)
+            {
+                await Task.Delay(100);
+            }
         }
 
         private void MyFrame_Navigated(object sender, NavigationEventArgs e)
@@ -46,10 +102,14 @@ namespace EnergyThreading
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            instance.update();
-            textBlock1.Text = instance.totalDemand.ToString();
+
+        }
+
+        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

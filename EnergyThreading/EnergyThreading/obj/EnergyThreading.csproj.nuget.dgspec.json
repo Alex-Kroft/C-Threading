@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dakro\\Documents\\GitHub\\C-Threading\\EnergyThreading\\EnergyThreading\\EnergyThreading.csproj": {}
+    "C:\\Users\\Gebruiker\\Source\\Repos\\Alex-Kroft\\C-Threading\\EnergyThreading\\EnergyThreading\\EnergyThreading.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dakro\\Documents\\GitHub\\C-Threading\\EnergyThreading\\EnergyThreading\\EnergyThreading.csproj": {
+    "C:\\Users\\Gebruiker\\Source\\Repos\\Alex-Kroft\\C-Threading\\EnergyThreading\\EnergyThreading\\EnergyThreading.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dakro\\Documents\\GitHub\\C-Threading\\EnergyThreading\\EnergyThreading\\EnergyThreading.csproj",
+        "projectUniqueName": "C:\\Users\\Gebruiker\\Source\\Repos\\Alex-Kroft\\C-Threading\\EnergyThreading\\EnergyThreading\\EnergyThreading.csproj",
         "projectName": "EnergyThreading",
-        "projectPath": "C:\\Users\\dakro\\Documents\\GitHub\\C-Threading\\EnergyThreading\\EnergyThreading\\EnergyThreading.csproj",
-        "packagesPath": "C:\\Users\\dakro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dakro\\Documents\\GitHub\\C-Threading\\EnergyThreading\\EnergyThreading\\obj\\",
+        "projectPath": "C:\\Users\\Gebruiker\\Source\\Repos\\Alex-Kroft\\C-Threading\\EnergyThreading\\EnergyThreading\\EnergyThreading.csproj",
+        "packagesPath": "C:\\Users\\Gebruiker\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Gebruiker\\Source\\Repos\\Alex-Kroft\\C-Threading\\EnergyThreading\\EnergyThreading\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -19,7 +19,7 @@
           "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\dakro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Gebruiker\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
