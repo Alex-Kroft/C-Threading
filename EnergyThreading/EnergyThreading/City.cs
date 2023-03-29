@@ -5,10 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using Windows.UI;
-using System.Xml.Linq;
 
 namespace EnergyThreading
 {
@@ -31,18 +27,6 @@ namespace EnergyThreading
             storedEnergy = 0;
         }
 
-        private void amountOfHouses_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
-
-        public bool setSingleThread(bool value)
-        {
-            singleThread = value;
-            return singleThread;
-        }
-
-        public bool getSingleThread { get { return singleThread; } }
         public List<House> getHouses()
         {
             return houses;

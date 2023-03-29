@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -24,61 +22,20 @@ namespace EnergyThreading
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public Instance instance;
-        public TimeSpan _timeOfDay;
+        private Instance instance;
 
         public MainPage()
         {
             this.InitializeComponent();
-            instance = new Instance(MyFrame);
-            _timeOfDay = checkTime();
-        }
-        public void amountOfHouses_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int houseAmount = (int)e.AddedItems[0];
-        }
+            if (instance == null)
+            {
+                // pass time of day & amount of houses to instance
+                instance = new Instance(MyFrame);
 
-        public TimeSpan checkTime()
-        {
-            DateTime _startStopwatch;
-            _startStopwatch = DateTime.Now;
-            TimeSpan elapsed = DateTime.Now - _startStopwatch;
-            if(timePicker.SelectedTime != null)
-            {
-                TimeSpan currentTimeOfDay = (TimeSpan)(elapsed + timePicker.SelectedTime);
-                return currentTimeOfDay;
-            }
-            else
-            {
-                return TimeSpan.Zero;
-            }
-            
-        }
-        
-        public async Task button_Click_singlethread()
-        {
-            if(instance.getCity.getSingleThread == false)
-            {
-                instance.getCity.setSingleThread(true);
-            }
-            while (instance.getCity.getSingleThread)
-            {
-                await Task.Delay(100);
             }
         }
 
-        public async Task button_Click_multithread()
-        {
-            if (instance.getCity.getSingleThread == true)
-            {
-                instance.getCity.setSingleThread(false);
-            }
-            while (!instance.getCity.getSingleThread)
-            {
-                await Task.Delay(100);
-            }
-        }
-
+       
         private void Button_Click(object sender, RoutedEventArgs e)
         {  
 
@@ -93,11 +50,6 @@ namespace EnergyThreading
         {
             instance.update();
             textBlock1.Text = instance.totalDemand.ToString();
-        }
-
-        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

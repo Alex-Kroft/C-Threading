@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "zqmEOrBELj8fLMifb4a8fC9f3irJPm8tCtrudKl1QZ+cOjfs3eBbwGt8p9PcE48998VRAM2fkWV3d6gJAZaUPw==",
   "success": true,
   "projectFilePath": "C:\\Users\\dakro\\Documents\\GitHub\\C-Threading\\EnergyThreading\\EnergyThreading\\EnergyThreading.csproj",
-=======
-  "dgSpecHash": "7OqdLuWl19cR3AjGAhktYCI/P9s5CKDhmP9aA8s/+4eJHL5xhKr8qB3SKEPy2HUoDu996DRP38svuwKoUJ35kg==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\Gebruiker\\source\\repos\\Alex-Kroft\\C-Threading\\EnergyThreading\\EnergyThreading\\EnergyThreading.csproj",
->>>>>>> RobinDevelopment
   "expectedPackageFiles": [
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\microsoft.net.native.compiler\\2.2.12-rel-31116-00\\microsoft.net.native.compiler.2.2.12-rel-31116-00.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\microsoft.net.uwpcoreruntimesdk\\2.2.14\\microsoft.net.uwpcoreruntimesdk.2.2.14.nupkg.sha512",

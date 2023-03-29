@@ -49,8 +49,8 @@ namespace EnergyThreading
         {
 
         }
-        public City getCity { get { return city; } }
-        private void draw(Frame frame)
+
+        public void draw()
         {
             Canvas canvas = new Canvas();
             canvas.Width = frame.ActualWidth;
