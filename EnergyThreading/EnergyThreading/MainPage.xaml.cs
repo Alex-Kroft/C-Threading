@@ -33,6 +33,8 @@ namespace EnergyThreading
             {
                 // pass time of day & amount of houses to instance
                 instance = new Instance(MyFrame);
+                instance.update();
+                TotalDemand.Text = instance.totalDemand.ToString();
 
             }
             _timeOfDay = checkTime();
