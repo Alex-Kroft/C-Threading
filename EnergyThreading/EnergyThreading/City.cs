@@ -14,15 +14,16 @@ namespace EnergyThreading
         private Generator generator;
         private List<Thread> threads;
         private bool singleThread;
-
+        public float total;
         private float storedEnergy;
+        private readonly object lockObject = new object();
 
         public City(int houseAmount, bool singleThread) {
             houses = new List<House>();
             createHouses(houseAmount);
             Generator generator = new Generator("Alex");
             threads = new List<Thread>();
-            this.singleThread = singleThread;
+            this.singleThread = false;
             storedEnergy = 0;
         }
 
@@ -32,20 +33,24 @@ namespace EnergyThreading
         }
         public void createHouses(int amount)
         {
-            //Should this also be done via threading when multithreaded is chosen?
-            for (int i = 0; i < amount; i++)
-            {
-                House house = new House(i);
-            
-                houses.Add(house);
-                //if (!singleThread)
-                //{
-                //    Thread thread = new Thread(supplyDemandSingleHouse);
-                //    thread.Start(i);
-                //    threads.Add(thread);
-                //}
+            lock (houses) {
+                for (int i = 0; i < amount; i++)
+                {
+                    House house = new House(i);
+                    houses.Add(house);
+
+                    if (!singleThread)
+                    {
+                        ThreadPool.QueueUserWorkItem(new WaitCallback(supplyDemandSingleHouse), i);
+                    }
+                    else
+                    {
+                        supplyDemandSingleHouse(i);
+                    }
+                }
             }
         }
+
 
         public void update()
         {
@@ -67,17 +72,53 @@ namespace EnergyThreading
             House house = houses[(int)houseId];
             if (!house.isSatisfied())
             {
-                //This is really weird I know, but not like we're actually moving electricity, or any kinds of packets, unless we actually start doing that
-                //Otherwise, these operations are good for showing speed differences and how it handles the same variables having multiple reads and stuff.
-                generator.producePower(house.currentDemand);
-                generator.delegatePower(house.currentDemand);
-                storedEnergy += house.currentDemand;
-                house.currentElectricity = house.currentDemand;
-                storedEnergy -= house.currentDemand;
+                house.currentDemand += 50;
+
             }
-            Console.WriteLine(house.currentDemand);
+            else
+            {
+                house.currentDemand += 45;
+            }
+            }
+
+
+        public float calculateTotalDemand()
+        {
+            total = 0;
+
+            if (singleThread == true)
+            {
+                foreach (House house in houses)
+                {
+                    total += house.currentDemand;
+                }
+            }
+            else
+            {
+                CountdownEvent countdownEvent = new CountdownEvent(houses.Count);
+
+                for (int i = 0; i < houses.Count; i++)
+                {
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(addToTotalDemand), new object[] { houses[i], countdownEvent });
+                }
+
+                countdownEvent.Wait();
+            }
+
+            return total;
         }
 
+        private void addToTotalDemand(object data)
+        {
+            House house = (House)((object[])data)[0];
+            CountdownEvent countdownEvent = (CountdownEvent)((object[])data)[1];
+
+            lock (lockObject)
+            {
+                total += house.currentDemand;
+            }
+            countdownEvent.Signal();
+        }
         public void loadContent()
         {
 

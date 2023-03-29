@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 using Windows.System;
 using Windows.UI.Xaml.Media.Imaging;
+using System.Threading;
 
 namespace EnergyThreading
 {
@@ -17,15 +18,19 @@ namespace EnergyThreading
     {
         private Stopwatch stopwatch;
         private City city;
+        public float totalDemand;
         private Generator generator;
         private Frame frame;
-       
+        Object locker = new object();
+
 
         public Instance(Frame frame)
         {
             this.frame = frame;
             CompositionTarget.Rendering += OnCompositionTargetRendering;
-            this.city = new City(5, true);
+            this.city = new City(100, true);
+            this.totalDemand = city.total;
+
         }
 
         private void OnCompositionTargetRendering(object sender, object e)
@@ -35,7 +40,9 @@ namespace EnergyThreading
 
         public void update()
         {
-           
+            totalDemand = 0;
+            city.calculateTotalDemand();
+            totalDemand = city.total;
         }
 
         public void initialize()
@@ -61,29 +68,32 @@ namespace EnergyThreading
 
             foreach (House house in city.getHouses())
             {
-                Rectangle rect = new Rectangle();
-                rect.Width = columnWidth - 10;
-                rect.Height = rowHeight - 10;
-
-                /**
-                ImageBrush brush = new ImageBrush();
-                
-                if (house.isSatisfied())
+                lock (this.locker)
                 {
-                    brush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/house_green.png"));
-                    rect.Fill = brush;
-                } else {
-                    brush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/house_red.png"));
-                   rect.Fill = brush;
-                } **/
+                    Rectangle rect = new Rectangle();
+                    rect.Width = columnWidth - 10;
+                    rect.Height = rowHeight - 10;
 
-                rect.Fill = new SolidColorBrush(Colors.Red);
+                    /**
+                    ImageBrush brush = new ImageBrush();
+                    
+                    if (house.isSatisfied())
+                    {
+                        brush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/house_green.png"));
+                        rect.Fill = brush;
+                    } else {
+                        brush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/house_red.png"));
+                       rect.Fill = brush;
+                    } **/
 
-                Canvas.SetLeft(rect, currentColumn * columnWidth);
-                Canvas.SetTop(rect, currentRow * rowHeight);
-                canvas.Children.Add(rect);
+                    rect.Fill = new SolidColorBrush(Colors.Red);
 
-                currentColumn++;
+                    Canvas.SetLeft(rect, currentColumn * columnWidth);
+                    Canvas.SetTop(rect, currentRow * rowHeight);
+                    canvas.Children.Add(rect);
+
+                    currentColumn++;
+                }
                 if (currentColumn == housesPerRow)
                 {
                     currentRow++;

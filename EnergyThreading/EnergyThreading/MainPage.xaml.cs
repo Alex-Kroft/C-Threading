@@ -27,16 +27,18 @@ namespace EnergyThreading
         public MainPage()
         {
             this.InitializeComponent();
+            if (instance == null)
+            {
+                // pass time of day & amount of houses to instance
+                instance = new Instance(MyFrame);
+
+            }
         }
 
        
         private void Button_Click(object sender, RoutedEventArgs e)
         {  
-            if (instance == null)
-            {
-                // pass time of day & amount of houses to instance
-                instance = new Instance(MyFrame);
-            }
+
         }
 
         private void MyFrame_Navigated(object sender, NavigationEventArgs e)
@@ -46,7 +48,8 @@ namespace EnergyThreading
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            instance.update();
+            textBlock1.Text = instance.totalDemand.ToString();
         }
     }
 }
