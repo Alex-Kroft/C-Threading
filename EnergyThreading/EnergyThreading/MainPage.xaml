@@ -13,11 +13,11 @@
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Name="multiThreadingButton" Content="Use multi thread" Margin="585,137,0,0" VerticalAlignment="Top" Height="74" Width="212" Click="Button_Click_Multithread" Grid.ColumnSpan="2"/>
+        <Button Name="multiThreadingButton" Content="Change Threading Type" Margin="585,137,0,0" VerticalAlignment="Top" Height="74" Width="212" Click="Button_Click_Multithread" Grid.ColumnSpan="2"/>
         <Button Name="singleThreadingButton" Content="Use single thread" Margin="312,137,0,0" VerticalAlignment="Top" Height="74" Width="190" Click="Button_Click_Singlethread" Grid.ColumnSpan="2"/>
 
         <StackPanel Grid.ColumnSpan="2">
-            <ComboBox x:Name="houses" PlaceholderText="Select the number of houses to spawn" Margin="312,98,0,0" Height="34" Width="485" SelectionChanged="amountOfHouses_SelectionChanged">
+            <ComboBox x:Name="houses" PlaceholderText="Select the number of houses to spawn" Margin="312,98,0,0" Height="34" Width="514" SelectionChanged="amountOfHouses_SelectionChanged">
                 <x:Int32>10</x:Int32>
                 <x:Int32>20</x:Int32>
                 <x:Int32>30</x:Int32>
@@ -29,8 +29,6 @@
                 <x:Int32>90</x:Int32>
                 <x:Int32>100</x:Int32>
             </ComboBox>
-            <TextBlock Text="{x:Bind houses.SelectedIndex, Mode=OneWay}"/>
-            <TextBlock Text="{x:Bind houses.SelectedItem, Mode=OneWay}"/>
         </StackPanel>
         <StackPanel Grid.ColumnSpan="2">
             <TimePicker x:Name="timePicker" Header="Pick time of day" Margin="312,27,0,0" VerticalAlignment="Top" Height="71" Width="485"/>

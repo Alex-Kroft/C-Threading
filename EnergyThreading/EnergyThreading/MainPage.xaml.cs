@@ -86,19 +86,6 @@ namespace EnergyThreading
                 await Task.Delay(100);
             }
         }
-
-        public async void Button_Click_Multithread(object sender, RoutedEventArgs e)
-        {
-            if (instance.getCity.getSingleThread == true)
-            {
-                instance.getCity.setSingleThread(false);
-            }
-            while (!instance.getCity.getSingleThread)
-            {
-                await Task.Delay(100);
-            }
-        }
-
         private void MyFrame_Navigated(object sender, NavigationEventArgs e)
         {
 
@@ -112,6 +99,22 @@ namespace EnergyThreading
         private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private async void Button_Click_Multithread(object sender, RoutedEventArgs e)
+        {
+            if (instance.getCity.getSingleThread == true)
+            {
+                instance.getCity.setSingleThread(false);
+            }
+            else
+            {
+                instance.getCity.setSingleThread(true);
+            }
+            while (!instance.getCity.getSingleThread)
+            {
+                await Task.Delay(100);
+            }
         }
     }
 }
