@@ -39,7 +39,8 @@
         <Image Source="Assets/generator.png" HorizontalAlignment="Left" Height="315" Margin="648,0,0,30" VerticalAlignment="Bottom" Width="203" UseLayoutRounding="True" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Grid.Column="1" />
         <TextBlock x:Name="resultBox" TextWrapping="Wrap" Text="Results:" Margin="22,28,506,550" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
         <TextBlock x:Name="timeOfDayText" TextWrapping="Wrap" Text="Time of day:" Margin="22,52,506,526" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
-        <TextBlock x:Name="timeOfDay" TextWrapping="Wrap" Text="{Binding _timeOfDay, UpdateSourceTrigger=Default}" Margin="114,52,414,526" SelectionChanged="TextBlock_SelectionChanged" RenderTransformOrigin="0.768,0.509" Grid.Column="1"/>
         <TextBlock x:Name="TotalDemand" TextWrapping="Wrap" Text="Total Demand:" Margin="22,83,506,495" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
+        <TextBlock x:Name="TotalSupply" TextWrapping="Wrap" Text="Total Supply:" Margin="22,107,506,471" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
+
     </Grid>
 </Page>
