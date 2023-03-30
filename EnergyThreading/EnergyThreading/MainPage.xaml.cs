@@ -37,7 +37,7 @@ namespace EnergyThreading
                 TotalDemandResult.Text = instance.totalDemand.ToString();
                 TotalSupplyResult.Text = instance.getCity.storedEnergy.ToString();
                 TimeOfDayResult.Text = checkTime().ToString();
-
+				
                 if (!instance.getCity.getSingleThread) {
                     ThreadingTypeText.Text = "MultiThread";
                 } else
@@ -45,8 +45,6 @@ namespace EnergyThreading
                     ThreadingTypeText.Text = "SingleThread";
                 }
                 
-
-
             }
             _timeOfDay = checkTime();
         }
@@ -59,7 +57,7 @@ namespace EnergyThreading
                 //ComboBoxItem cbi1 = (ComboBoxItem)(sender as ComboBox).SelectedItem;  
                 //ComboBoxItem cbi = (ComboBoxItem)houses.SelectedItem;
                 var selectedAmount =(int)houses.SelectedItem;
-                instance.getCity.setHouses(selectedAmount);
+                instance.getCity.createHouses(selectedAmount);
             }
         }
 
@@ -90,7 +88,6 @@ namespace EnergyThreading
         {
            instance.update();
            TotalDemandResult.Text = instance.totalDemand.ToString();
-           TotalSupplyResult.Text = instance.getCity.storedEnergy.ToString();
         }
         private void MyFrame_Navigated(object sender, NavigationEventArgs e)
         {
@@ -122,6 +119,7 @@ namespace EnergyThreading
             {
                 instance.getCity.produceEnergyForHouses();
             });
+            TotalSupplyResult.Text = instance.getCity.storedEnergy.ToString();
         }
 
         private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)

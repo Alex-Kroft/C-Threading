@@ -88,7 +88,7 @@ namespace EnergyThreading
                         {
                             generator.delegatePower(house.currentDemand);
                             house.currentElectricity = house.currentDemand;
-                            
+                            house.currentDemand = 0;
                         }
                     }
                 }
@@ -100,7 +100,7 @@ namespace EnergyThreading
 
                     Parallel.ForEach(houses, house =>
                     {
-                        if (house != null && house.currentDemand != 0 && generator.powerSupply > house.currentDemand)
+                        if (house != null && house.currentDemand != 0 && generator.powerSupply >= house.currentDemand)
                         {
                             semaphore.WaitOne(); // Wait for the semaphore to become available
                             lock (generator)
@@ -110,6 +110,7 @@ namespace EnergyThreading
                             lock (house)
                             {
                                 house.currentElectricity = house.currentDemand;
+                                house.currentDemand = 0;
                             }
                             semaphore.Release(); // Release the semaphore
                         }
