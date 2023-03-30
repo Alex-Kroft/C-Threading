@@ -19,7 +19,6 @@ namespace EnergyThreading
         private Stopwatch stopwatch;
         private City city;
         public float totalDemand;
-        private Generator generator;
         private Frame frame;
         Object locker = new object();
 
@@ -27,7 +26,7 @@ namespace EnergyThreading
         public Instance(Frame frame)
         {
             this.frame = frame;
-            CompositionTarget.Rendering += OnCompositionTargetRendering;
+           CompositionTarget.Rendering += OnCompositionTargetRendering;
             this.city = new City(100, true);
             this.totalDemand = city.total;
 
@@ -40,15 +39,19 @@ namespace EnergyThreading
 
         public void update()
         {
-            totalDemand = 0;
             city.calculateTotalDemand();
-   
+            city.distributeEnergyToHouses();
+            CompositionTarget.Rendering += OnCompositionTargetRendering;
             totalDemand = city.total;
+
         }
 
         public void initialize()
         {
-
+            totalDemand = 0;
+            city.calculateTotalDemand();
+            CompositionTarget.Rendering += OnCompositionTargetRendering;
+            totalDemand = city.total;
         }
 
         public void draw()
@@ -87,7 +90,14 @@ namespace EnergyThreading
                        rect.Fill = brush;
                     } **/
 
-                    rect.Fill = new SolidColorBrush(Colors.Red);
+                    if (house.isSatisfied())
+                    {
+                        rect.Fill = new SolidColorBrush(Colors.Green);
+                    }
+                    else
+                    {
+                        rect.Fill = new SolidColorBrush(Colors.Red);
+                    }
 
                     Canvas.SetLeft(rect, currentColumn * columnWidth);
                     Canvas.SetTop(rect, currentRow * rowHeight);
@@ -104,11 +114,6 @@ namespace EnergyThreading
 
             this.frame.Content = canvas;
         }
-
-       private void producePower()
-       {
-            city.produceEnergyForHouses();
-       }
 
        public void timeCounter()
         {

@@ -12,17 +12,17 @@ namespace EnergyThreading
     public class City
     {
         private List<House> houses;
-        private Generator generator;
+        public Generator generator = new Generator("Alex");                                                
         private List<Thread> threads;
         private bool singleThread;
         public float total;
-        private float storedEnergy;
+        public float storedEnergy;
         private readonly object lockObject = new object();
 
         public City(int houseAmount, bool singleThread) {
             houses = new List<House>();
             createHouses(houseAmount);
-            Generator generator = new Generator("Alex");
+
             threads = new List<Thread>();
             this.singleThread = false;
             storedEnergy = 0;
@@ -71,32 +71,80 @@ namespace EnergyThreading
 
         }
 
-        public void initialize()
+        public void distributeEnergyToHouses()
         {
+            if (singleThread == true)
+            {
+                if (houses != null && generator != null)
+                {
+                    foreach (House house in houses)
+                    {
+                        if (house != null && house.currentDemand != 0 && generator.powerSupply > house.currentDemand)
+                        {
+                            generator.delegatePower(house.currentDemand);
+                            house.currentElectricity = house.currentDemand;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (houses != null && generator != null)
+                {
 
+                    Parallel.ForEach(houses, house =>
+                    {
+                        if (house != null && house.currentDemand != 0 && generator.powerSupply > house.currentDemand)
+                        {
+                            lock (generator)
+                            {
+                                generator.delegatePower(house.currentDemand);
+                            }
+                            lock (house)
+                            {
+                                house.currentElectricity = house.currentDemand;
+                            }
+                        }
+                    });
+                }
+            }
         }
 
         public void produceEnergyForHouses()
         {
             if (singleThread == true)
             {
-                foreach (House house in houses)
+                if (houses != null && generator != null)
                 {
-                    generator.producePower(house.currentDemand);
+                    foreach (House house in houses)
+                    {
+                        if (house != null && house.currentDemand != 0)
+                        {
+                            generator.producePower(house.currentDemand);
+                        }
+                    }
+                    storedEnergy = generator.powerSupply;
                 }
             }
             else
             {
-                List<Thread> threads = new List<Thread>();
-                foreach (House house in houses)
+                if (houses != null && generator != null)
                 {
-                    Thread t = new Thread(() => generator.producePower(house.currentDemand));
-                    threads.Add(t);
-                    t.Start();
-                }
-                foreach (Thread t in threads)
-                {
-                    t.Join();
+                    List<Thread> threads = new List<Thread>();
+                    foreach (House house in houses)
+                    {
+                        if (house != null && house.currentDemand != 0)
+                        {
+                            Thread t = new Thread(() => generator.producePower(house.currentDemand));
+                            threads.Add(t);
+                            t.Start();
+                        }
+                    }
+                    foreach (Thread t in threads)
+                    {
+                        t.Join();
+                    }
+                    storedEnergy = generator.powerSupply;
                 }
             }
         }

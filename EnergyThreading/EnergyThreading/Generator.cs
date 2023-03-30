@@ -9,7 +9,7 @@ namespace EnergyThreading
     public class Generator
     {
         private string name;
-        private float powerSupply = 0;
+        public float powerSupply = 0;
 
         public Generator(string Name) {
             name = Name;

@@ -33,7 +33,7 @@ namespace EnergyThreading
             {
                 // pass time of day & amount of houses to instance
                 instance = new Instance(MyFrame);
-                instance.update();
+                instance.initialize();
                 TotalDemand.Text = instance.totalDemand.ToString();
 
             }
@@ -78,6 +78,8 @@ namespace EnergyThreading
         public void Button_Click_Singlethread(object sender, RoutedEventArgs e)
         {
            instance.update();
+           TotalDemand.Text = instance.totalDemand.ToString();
+           TotalSupply.Text = instance.getCity.storedEnergy.ToString();
         }
         private void MyFrame_Navigated(object sender, NavigationEventArgs e)
         {
@@ -110,9 +112,12 @@ namespace EnergyThreading
             }
         }
 
-        private void newbutton_Click(object sender, RoutedEventArgs e)
+        private async void newbutton_Click(object sender, RoutedEventArgs e)
         {
-            instance.producePower();
+            await Task.Run(() =>
+            {
+                instance.getCity.produceEnergyForHouses();
+            });
         }
     }
 }
