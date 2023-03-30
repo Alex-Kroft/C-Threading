@@ -18,7 +18,7 @@
         <Button Name="newbutton" Content="Produce Power" Margin="214,137,0,0" VerticalAlignment="Top" Height="74" Width="212" Grid.Column="1" Click="newbutton_Click"/>
 
         <StackPanel Grid.ColumnSpan="2">
-            <ComboBox x:Name="houses" PlaceholderText="Select the number of houses to spawn" Margin="312,98,0,0" Height="34" Width="514" SelectionChanged="amountOfHouses_SelectionChanged">
+            <ComboBox x:Name="houses" PlaceholderText="Select the number of houses to spawn" Margin="312,98,0,0" Height="34" Width="514" SelectionChanged="amountOfHouses_SelectionChanged" IsHitTestVisible="True" IsEditable="True">
                 <x:Int32>10</x:Int32>
                 <x:Int32>20</x:Int32>
                 <x:Int32>30</x:Int32>
@@ -37,10 +37,17 @@
 
         <Frame x:Name="MyFrame" Height="315" Margin="22,254,269,0" VerticalAlignment="Top" Navigated="MyFrame_Navigated" Grid.Column="1"/>
         <Image Source="Assets/generator.png" HorizontalAlignment="Left" Height="315" Margin="648,0,0,30" VerticalAlignment="Bottom" Width="203" UseLayoutRounding="True" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Grid.Column="1" />
+        
         <TextBlock x:Name="resultBox" TextWrapping="Wrap" Text="Results:" Margin="22,28,506,550" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
-        <TextBlock x:Name="timeOfDayText" TextWrapping="Wrap" Text="Time of day:" Margin="22,52,506,526" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
-        <TextBlock x:Name="TotalDemand" TextWrapping="Wrap" Text="Total Demand:" Margin="22,83,506,495" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
-        <TextBlock x:Name="TotalSupply" TextWrapping="Wrap" Text="Total Supply:" Margin="22,107,506,471" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
+        <TextBlock x:Name="timeOfDayText" TextWrapping="Wrap" Text="Time of day:" Margin="22,52,795,526" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
+        <TextBlock x:Name="TotalDemand" TextWrapping="Wrap" Text="Total Demand:" Margin="22,80,786,498" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
+        <TextBlock x:Name="TotalSupply" TextWrapping="Wrap" Text="Total Supply:" Margin="22,107,794,471" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
+        <TextBlock x:Name="ThreadingType" TextWrapping="Wrap" Text="Threading type:" Margin="22,131,778,447" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
+
+        <TextBlock x:Name="TimeOfDayResult" TextWrapping="Wrap" Text="{Binding}" Margin="133,52,683,526" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
+        <TextBlock x:Name="TotalDemandResult" TextWrapping="Wrap" Text="{Binding}" Margin="133,80,683,498" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
+        <TextBlock x:Name="TotalSupplyResult" TextWrapping="Wrap" Text="{Binding}" Margin="133,107,683,471" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
+        <TextBlock x:Name="ThreadingTypeResult" TextWrapping="Wrap" Text="{Binding}" SelectionChanged="TextBlock_SelectionChanged" Height="22" Width="84"/>
 
     </Grid>
 </Page>

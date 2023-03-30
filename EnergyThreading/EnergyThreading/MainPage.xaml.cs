@@ -34,7 +34,12 @@ namespace EnergyThreading
                 // pass time of day & amount of houses to instance
                 instance = new Instance(MyFrame);
                 instance.initialize();
-                TotalDemand.Text = instance.totalDemand.ToString();
+                TotalDemandResult.Text = instance.totalDemand.ToString();
+                TotalSupplyResult.Text = instance.getCity.storedEnergy.ToString();
+                TimeOfDayResult.Text = checkTime().ToString();
+
+                
+
 
             }
             _timeOfDay = checkTime();
@@ -43,12 +48,17 @@ namespace EnergyThreading
         public void amountOfHouses_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             instance.update();
-            int houseAmount = (int)e.AddedItems[0];
             if (houses.SelectedItem != null)
             {
                 //ComboBoxItem cbi1 = (ComboBoxItem)(sender as ComboBox).SelectedItem;  
-                ComboBoxItem cbi = (ComboBoxItem)houses.SelectedItem;
-                int selectedAmount = (int)cbi.Content;
+                //ComboBoxItem cbi = (ComboBoxItem)houses.SelectedItem;
+                var selectedAmount =(int)houses.SelectedItem;
+                instance.getCity.setHouses(selectedAmount);
+            }
+            if (instance.getCity.getHouses().Count() >= 150)
+            {
+                houses.IsHitTestVisible = false;
+                houses.IsEditable = false;
             }
         }
 
@@ -78,8 +88,8 @@ namespace EnergyThreading
         public void Button_Click_Singlethread(object sender, RoutedEventArgs e)
         {
            instance.update();
-           TotalDemand.Text = instance.totalDemand.ToString();
-           TotalSupply.Text = instance.getCity.storedEnergy.ToString();
+           TotalDemandResult.Text = instance.totalDemand.ToString();
+           TotalSupplyResult.Text = instance.getCity.storedEnergy.ToString();
         }
         private void MyFrame_Navigated(object sender, NavigationEventArgs e)
         {

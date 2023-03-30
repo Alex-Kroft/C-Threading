@@ -74,9 +74,22 @@ namespace EnergyThreading
             {
                 lock (this.locker)
                 {
+
                     Rectangle rect = new Rectangle();
-                    rect.Width = columnWidth - 10;
                     rect.Height = rowHeight - 10;
+                    rect.Width = columnWidth - 10;
+
+                    /*if (city.getHouses().Count <= 50 )
+                    {
+                        rect.Width = columnWidth - 10;
+                        
+                    } else if (city.getHouses().Count > 50 && city.getHouses().Count <= 100)
+                    {
+                        rect.Width = (columnWidth - 10) / 2;
+                    } else
+                    {
+                        rect.Width = (columnWidth - 10) / 3;
+                    }*/
 
                     /**
                     ImageBrush brush = new ImageBrush();

@@ -32,6 +32,15 @@ namespace EnergyThreading
         {
             return houses;
         }
+
+        public List<House> setHouses(int amount)
+        {
+            for (int i = 0; i < amount; i++) 
+            {
+                houses.Add(new House(i + (houses.LastOrDefault().id)));
+            }
+            return houses;
+        }
         public void createHouses(int amount)
         {
             lock (houses) {
