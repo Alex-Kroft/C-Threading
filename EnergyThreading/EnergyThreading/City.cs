@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -127,6 +128,8 @@ namespace EnergyThreading
                 if (houses != null && generator != null)
                 {
                     List<Thread> threads = new List<Thread>();
+                    //Commented out the thread creation code that makes a thread for each house
+                    /*
                     foreach (House house in houses)
                     {
                         lock (lockObject)
@@ -142,6 +145,56 @@ namespace EnergyThreading
                             t.Start();
                         }
                     }
+                    */
+
+                    int threadAmountToSplit = 5;    //How many threads to make
+                    int housesPerThread = houses.Count / threadAmountToSplit;
+                    int extraHouses = houses.Count % threadAmountToSplit;   //When the number is not divisible by threadAmountToSplit
+
+                    //Splits all the houses into blocks, and stores the list of all the blocks in the "blocks" variable
+                    List<List<House>> blocks = new List<List<House>>(); 
+                    for (int i = 0; i < threadAmountToSplit; i++)
+                    {
+                        
+                        List<House> cityBlock = new List<House>();
+                        int start = i * housesPerThread;
+                        int end = start + housesPerThread;
+
+                        // assign extra houses to the last block
+                        if (i == threadAmountToSplit - 1)
+                        {
+                            end += extraHouses;
+                        }
+
+                        for (int j = start; j < end; j++)
+                        {
+                            if (j < houses.Count) // make sure j is within the bounds of the houses list
+                            {
+                                cityBlock.Add(houses[j]);
+                            }
+                        }
+                        blocks.Add(cityBlock);
+                    }
+
+                    foreach (List<House> cityBlock in blocks)
+                    {
+                        Thread t = new Thread(() =>
+                        {
+                            // produce power for all houses in the block
+                            lock (lockObject) // acquire the lock before accessing the generator
+                            {
+                                foreach (House house in cityBlock)
+                                {
+                                    generator.producePower(house.currentDemand);
+                                }
+                            }
+
+                        });
+                        threads.Add(t);
+                        t.Start();
+                    }
+                    
+
                     foreach (Thread t in threads)
                     {
                         t.Join();
