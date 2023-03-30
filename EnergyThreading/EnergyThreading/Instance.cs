@@ -34,14 +34,14 @@ namespace EnergyThreading
         public City getCity { get { return city; } }
         private void OnCompositionTargetRendering(object sender, object e)
         {
-            draw(); //or change to the update() for stuff?
+            draw();
+            city.calculateTotalDemand();
         }
 
         public void update()
         {
             city.calculateTotalDemand();
             city.distributeEnergyToHouses();
-            CompositionTarget.Rendering += OnCompositionTargetRendering;
             totalDemand = city.total;
 
         }
@@ -50,7 +50,6 @@ namespace EnergyThreading
         {
             totalDemand = 0;
             city.calculateTotalDemand();
-            CompositionTarget.Rendering += OnCompositionTargetRendering;
             totalDemand = city.total;
         }
 
