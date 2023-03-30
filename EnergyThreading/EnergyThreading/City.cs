@@ -35,6 +35,11 @@ namespace EnergyThreading
             return houses;
         }
 
+        public Generator getGenerator() 
+        {
+            return generator;
+        }
+
         public void createHouses(int amount)
         {
             lock (houses) {
@@ -62,7 +67,6 @@ namespace EnergyThreading
         }
 
         public bool getSingleThread { get { return singleThread; } }
-
 
         public void distributeEnergyToHouses()
         {

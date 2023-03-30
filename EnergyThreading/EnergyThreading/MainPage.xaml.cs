@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -25,7 +27,8 @@ namespace EnergyThreading
     {
         private Instance instance;
         public TimeSpan _timeOfDay;
-
+        private Stopwatch stopwatch1 = new Stopwatch();
+        private Stopwatch stopwatch2 = new Stopwatch();
         public MainPage()
         {
             this.InitializeComponent();
@@ -36,8 +39,8 @@ namespace EnergyThreading
                 instance.initialize();
                 TotalDemandResult.Text = instance.totalDemand.ToString();
                 TotalSupplyResult.Text = instance.getCity.storedEnergy.ToString();
-                TimeOfDayResult.Text = checkTime().ToString();
-				
+
+
                 if (!instance.getCity.getSingleThread) {
                     ThreadingTypeText.Text = "MultiThread";
                 } else
@@ -46,9 +49,9 @@ namespace EnergyThreading
                 }
                 
             }
-            _timeOfDay = checkTime();
         }
 
+        
         public void amountOfHouses_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //instance.update();
@@ -66,7 +69,7 @@ namespace EnergyThreading
             instance.update();
             houses.Text = instance.totalDemand.ToString();
         }*/
-
+/*
         public TimeSpan checkTime()
         {
             DateTime _startStopwatch;
@@ -82,9 +85,10 @@ namespace EnergyThreading
                 return TimeSpan.Zero;
             }
 
-        }
+        }*/
 
-        public void Button_Click_Singlethread(object sender, RoutedEventArgs e)
+
+        public void Button_Click_Next_Day(object sender, RoutedEventArgs e)
         {
             int amountOfHouses = instance.getCity.getHouses().Count;
             Boolean singleThread = instance.getCity.getSingleThread;
@@ -95,7 +99,6 @@ namespace EnergyThreading
             instance.initialize();
             TotalDemandResult.Text = instance.totalDemand.ToString();
             TotalSupplyResult.Text = instance.getCity.storedEnergy.ToString();
-            TimeOfDayResult.Text = checkTime().ToString();
 
             if (!singleThread)
             {
@@ -108,7 +111,6 @@ namespace EnergyThreading
                 ThreadingTypeText.Text = "SingleThread";
             }
 
-            _timeOfDay = checkTime();
         }
         
         
@@ -117,7 +119,7 @@ namespace EnergyThreading
 
         }
 
-        private void Button_Click_Multithread(object sender, RoutedEventArgs e)
+        private void Button_Click_Change_Threading(object sender, RoutedEventArgs e)
         {
             if (instance.getCity.getSingleThread == true)
             {
@@ -131,13 +133,21 @@ namespace EnergyThreading
             }
         }
 
-        private async void newbutton_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click_ProducePower(object sender, RoutedEventArgs e)
         {
+            stopwatch1.Restart();
+
             await Task.Run(() =>
             {
                 instance.getCity.produceEnergyForHouses();
             });
             TotalSupplyResult.Text = instance.getCity.storedEnergy.ToString();
+
+            stopwatch1.Stop();
+            double elapsedGen = stopwatch1.Elapsed.TotalMilliseconds;
+            generateTimerResult.Text = elapsedGen.ToString() + "ms";
+            stopwatch1.Reset();
+
         }
 
 
@@ -149,7 +159,12 @@ namespace EnergyThreading
 
         private void Button_Click_SupplyPower(object sender, RoutedEventArgs e)
         {
+            stopwatch2.Start();
             instance.update();
+            stopwatch2.Stop();
+            double elapsedSupply = stopwatch2.Elapsed.TotalMilliseconds;
+            supplyTimerResult.Text = elapsedSupply.ToString() + "ms";
+            stopwatch2.Reset();
         }
     }
 }

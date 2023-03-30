@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\EnergyThreading",
+    "\\EnergyThreading\\EnergyThreading"
   ],
-  "SelectedNode": "\\EnergyThreading.sln",
+  "SelectedNode": "\\EnergyThreading\\EnergyThreading.sln",
   "PreviewInSolutionExplorer": false
 }
