@@ -34,14 +34,6 @@ namespace EnergyThreading
             return houses;
         }
 
-        public List<House> setHouses(int amount)
-        {
-            for (int i = 0; i < amount; i++) 
-            {
-                houses.Add(new House(i + (houses.LastOrDefault().id)));
-            }
-            return houses;
-        }
         public void createHouses(int amount)
         {
             lock (houses) {
@@ -69,12 +61,7 @@ namespace EnergyThreading
         }
 
         public bool getSingleThread { get { return singleThread; } }
-        
 
-        public void update()
-        {
-
-        }
 
         public void distributeEnergyToHouses()
         {
@@ -144,19 +131,25 @@ namespace EnergyThreading
                     {
                         lock (lockObject)
                         {
-                            if (house != null && house.currentDemand != 0)
+                            Thread t = new Thread(() =>
                             {
-                                Thread t = new Thread(() => generator.producePower(house.currentDemand));
-                                threads.Add(t);
-                                t.Start();
-                            }
+                                lock (lockObject) // acquire the lock before accessing the generator
+                                {
+                                    generator.producePower(house.currentDemand);
+                                }
+                            });
+                            threads.Add(t);
+                            t.Start();
                         }
                     }
                     foreach (Thread t in threads)
                     {
                         t.Join();
                     }
-                    storedEnergy = generator.powerSupply;
+                    lock (lockObject) // acquire the lock before updating storedEnergy
+                    {
+                        storedEnergy = generator.powerSupply;
+                    }
                 }
             }
         }
