@@ -55,11 +55,6 @@ namespace EnergyThreading
                 var selectedAmount =(int)houses.SelectedItem;
                 instance.getCity.setHouses(selectedAmount);
             }
-            if (instance.getCity.getHouses().Count() >= 150)
-            {
-                houses.IsHitTestVisible = false;
-                houses.IsEditable = false;
-            }
         }
 
         /*private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -106,7 +101,7 @@ namespace EnergyThreading
 
         }
 
-        private async void Button_Click_Multithread(object sender, RoutedEventArgs e)
+        private void Button_Click_Multithread(object sender, RoutedEventArgs e)
         {
             if (instance.getCity.getSingleThread == true)
             {
@@ -115,10 +110,6 @@ namespace EnergyThreading
             else
             {
                 instance.getCity.setSingleThread(true);
-            }
-            while (!instance.getCity.getSingleThread)
-            {
-                await Task.Delay(100);
             }
         }
 

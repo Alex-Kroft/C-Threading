@@ -61,11 +61,6 @@ namespace EnergyThreading
             }
         }
 
-        private void amountOfHouses_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         public bool setSingleThread(bool value)
         {
             singleThread = value;
@@ -88,7 +83,7 @@ namespace EnergyThreading
                 {
                     foreach (House house in houses)
                     {
-                        if (house != null && house.currentDemand != 0 && generator.powerSupply > house.currentDemand)
+                        if (house != null && house.currentDemand != 0)
                         {
                             generator.delegatePower(house.currentDemand);
                             house.currentElectricity = house.currentDemand;

@@ -60,7 +60,7 @@ namespace EnergyThreading
             canvas.Width = frame.ActualWidth;
             canvas.Height = frame.ActualHeight;
 
-            int housesPerRow = 5;
+            int housesPerRow = 30;
             int houseCount = city.getHouses().Count;
             int rowCount = (int)Math.Ceiling((double)houseCount / housesPerRow);
 
