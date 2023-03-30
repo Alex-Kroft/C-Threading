@@ -26,7 +26,7 @@ namespace EnergyThreading
         public Instance(Frame frame)
         {
             this.frame = frame;
-           CompositionTarget.Rendering += OnCompositionTargetRendering;
+            CompositionTarget.Rendering += OnCompositionTargetRendering;
             this.city = new City(100, true);
             this.totalDemand = city.total;
 
