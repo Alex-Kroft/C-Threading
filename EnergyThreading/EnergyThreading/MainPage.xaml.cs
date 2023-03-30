@@ -51,7 +51,7 @@ namespace EnergyThreading
 
         public void amountOfHouses_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            instance.update();
+            //instance.update();
             if (houses.SelectedItem != null)
             {
                 //ComboBoxItem cbi1 = (ComboBoxItem)(sender as ComboBox).SelectedItem;  
@@ -88,8 +88,10 @@ namespace EnergyThreading
         {
             int amountOfHouses = instance.getCity.getHouses().Count;
             Boolean singleThread = instance.getCity.getSingleThread;
+            float remainingSupply = instance.getCity.storedEnergy;
 
             instance = new Instance(MyFrame, amountOfHouses);
+            instance.getCity.storedEnergy = remainingSupply;
             instance.initialize();
             TotalDemandResult.Text = instance.totalDemand.ToString();
             TotalSupplyResult.Text = instance.getCity.storedEnergy.ToString();

@@ -61,6 +61,8 @@ namespace EnergyThreading
             canvas.Height = frame.ActualHeight;
 
             int housesPerRow = 30;
+            if (city.getHouses().Count > 500) { housesPerRow = 50; }
+
             int houseCount = city.getHouses().Count;
             int rowCount = (int)Math.Ceiling((double)houseCount / housesPerRow);
 
@@ -74,34 +76,11 @@ namespace EnergyThreading
             {
                 lock (this.locker)
                 {
+                    
 
                     Rectangle rect = new Rectangle();
                     rect.Height = rowHeight - 10;
                     rect.Width = columnWidth - 10;
-
-                    /*if (city.getHouses().Count <= 50 )
-                    {
-                        rect.Width = columnWidth - 10;
-                        
-                    } else if (city.getHouses().Count > 50 && city.getHouses().Count <= 100)
-                    {
-                        rect.Width = (columnWidth - 10) / 2;
-                    } else
-                    {
-                        rect.Width = (columnWidth - 10) / 3;
-                    }*/
-
-                    /**
-                    ImageBrush brush = new ImageBrush();
-                    
-                    if (house.isSatisfied())
-                    {
-                        brush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/house_green.png"));
-                        rect.Fill = brush;
-                    } else {
-                        brush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/house_red.png"));
-                       rect.Fill = brush;
-                    } **/
 
                     if (house.isSatisfied())
                     {
