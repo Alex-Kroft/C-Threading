@@ -13,12 +13,12 @@
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Name="multiThreadingButton" Content="Change Threading Type" Margin="626,137,0,0" VerticalAlignment="Top" Height="74" Width="212" Click="Button_Click_Multithread" Grid.Column="1"/>
-        <Button Name="singleThreadingButton" Content="Next Day" Margin="431,137,0,0" VerticalAlignment="Top" Height="74" Width="190" Click="Button_Click_Singlethread" Grid.Column="1"/>
-        <Button Name="newbutton" Content="Produce Power" Margin="214,137,0,0" VerticalAlignment="Top" Height="74" Width="212" Grid.Column="1" Click="newbutton_Click"/>
+        <Button Name="multiThreadingButton" Content="Change Threading &#xD;&#xA;Type" Margin="637,141,0,0" Height="63" Width="143" Click="Button_Click_Multithread" Grid.Column="1" VerticalAlignment="Top"/>
+        <Button Name="singleThreadingButton" Content="Next Day" Margin="476,141,0,0" VerticalAlignment="Top" Height="63" Width="143" Click="Button_Click_Singlethread" Grid.Column="1"/>
+        <Button Name="newbutton" Content="Produce Power" Margin="307,141,0,0" VerticalAlignment="Top" Height="63" Width="142" Grid.Column="1" Click="newbutton_Click"/>
 
         <StackPanel Grid.ColumnSpan="2">
-            <ComboBox x:Name="houses" PlaceholderText="Select the number of houses to spawn" Margin="312,98,0,0" Height="34" Width="514" SelectionChanged="amountOfHouses_SelectionChanged" IsHitTestVisible="True" IsEditable="True">
+            <ComboBox x:Name="houses" PlaceholderText="Select the number of houses to spawn" Margin="312,98,0,0" Height="34" Width="464" SelectionChanged="amountOfHouses_SelectionChanged" IsHitTestVisible="True" IsEditable="True">
                 <x:Int32>10</x:Int32>
                 <x:Int32>20</x:Int32>
                 <x:Int32>30</x:Int32>
@@ -32,12 +32,12 @@
             </ComboBox>
         </StackPanel>
         <StackPanel Grid.ColumnSpan="2">
-            <TimePicker x:Name="timePicker" Header="Pick time of day" Margin="312,27,0,0" VerticalAlignment="Top" Height="71" Width="485"/>
+            <TimePicker x:Name="timePicker" Header="Pick time of day" Margin="312,27,0,0" Height="71" Width="467"/>
         </StackPanel>
 
         <Frame x:Name="MyFrame" Height="315" Margin="22,254,269,0" VerticalAlignment="Top" Navigated="MyFrame_Navigated" Grid.Column="1"/>
         <Image Source="Assets/generator.png" HorizontalAlignment="Left" Height="315" Margin="648,0,0,30" VerticalAlignment="Bottom" Width="203" UseLayoutRounding="True" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Grid.Column="1" />
-        
+
         <TextBlock x:Name="resultBox" TextWrapping="Wrap" Text="Results:" Margin="22,28,506,550" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
         <TextBlock x:Name="timeOfDayText" TextWrapping="Wrap" Text="Time of day:" Margin="22,52,795,526" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
         <TextBlock x:Name="TotalDemand" TextWrapping="Wrap" Text="Total Demand:" Margin="22,80,786,498" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
@@ -48,6 +48,7 @@
         <TextBlock x:Name="TotalDemandResult" TextWrapping="Wrap" Text="{Binding}" Margin="133,80,683,498" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
         <TextBlock x:Name="TotalSupplyResult" TextWrapping="Wrap" Text="{Binding}" Margin="133,107,683,471" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
         <TextBlock x:Name="ThreadingTypeResult" TextWrapping="Wrap" Text="{Binding}" SelectionChanged="TextBlock_SelectionChanged" Height="22" Width="84"/>
+        <TextBlock x:Name="ThreadingTypeText" TextWrapping="Wrap" Text="{Binding}" Margin="133,131,614,447" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
 
     </Grid>
 </Page>

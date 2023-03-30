@@ -14,7 +14,7 @@ namespace EnergyThreading
         private List<House> houses;
         public Generator generator = new Generator("Alex");                                                
         private List<Thread> threads;
-        private bool singleThread;
+        private bool singleThread { get; set; }
         public float total;
         public float storedEnergy;
         private readonly object lockObject = new object();

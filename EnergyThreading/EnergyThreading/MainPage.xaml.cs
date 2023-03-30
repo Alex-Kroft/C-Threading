@@ -37,6 +37,14 @@ namespace EnergyThreading
                 TotalDemandResult.Text = instance.totalDemand.ToString();
                 TotalSupplyResult.Text = instance.getCity.storedEnergy.ToString();
                 TimeOfDayResult.Text = checkTime().ToString();
+				
+                if (!instance.getCity.getSingleThread) {
+                    ThreadingTypeText.Text = "MultiThread";
+                } else
+                {
+                    ThreadingTypeText.Text = "SingleThread";
+                }
+                
             }
             _timeOfDay = checkTime();
         }
@@ -91,20 +99,17 @@ namespace EnergyThreading
 
         }
 
-        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Button_Click_Multithread(object sender, RoutedEventArgs e)
         {
             if (instance.getCity.getSingleThread == true)
             {
                 instance.getCity.setSingleThread(false);
+                ThreadingTypeText.Text = "MultiThread";
             }
             else
             {
                 instance.getCity.setSingleThread(true);
+                ThreadingTypeText.Text = "SingleThread";
             }
         }
 
@@ -115,6 +120,11 @@ namespace EnergyThreading
                 instance.getCity.produceEnergyForHouses();
             });
             TotalSupplyResult.Text = instance.getCity.storedEnergy.ToString();
+        }
+
+        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
