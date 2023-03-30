@@ -18,6 +18,7 @@ namespace EnergyThreading
         public float total;
         public float storedEnergy;
         private readonly object lockObject = new object();
+        private Semaphore semaphore = new Semaphore(4, 4); // Initialize a semaphore with a count of 4
 
         public City(int houseAmount, bool singleThread) {
             houses = new List<House>();
@@ -100,6 +101,7 @@ namespace EnergyThreading
                     {
                         if (house != null && house.currentDemand != 0 && generator.powerSupply > house.currentDemand)
                         {
+                            semaphore.WaitOne(); // Wait for the semaphore to become available
                             lock (generator)
                             {
                                 generator.delegatePower(house.currentDemand);
@@ -108,6 +110,7 @@ namespace EnergyThreading
                             {
                                 house.currentElectricity = house.currentDemand;
                             }
+                            semaphore.Release(); // Release the semaphore
                         }
                     });
                 }
