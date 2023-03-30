@@ -11,7 +11,7 @@ namespace EnergyThreading
 {
     public class City
     {
-        private List<House> houses;
+        private List<House> houses { get; set; }
         public Generator generator = new Generator("Alex");                                                
         private List<Thread> threads;
         private bool singleThread { get; set; }
@@ -142,11 +142,14 @@ namespace EnergyThreading
                     List<Thread> threads = new List<Thread>();
                     foreach (House house in houses)
                     {
-                        if (house != null && house.currentDemand != 0)
+                        lock (lockObject)
                         {
-                            Thread t = new Thread(() => generator.producePower(house.currentDemand));
-                            threads.Add(t);
-                            t.Start();
+                            if (house != null && house.currentDemand != 0)
+                            {
+                                Thread t = new Thread(() => generator.producePower(house.currentDemand));
+                                threads.Add(t);
+                                t.Start();
+                            }
                         }
                     }
                     foreach (Thread t in threads)

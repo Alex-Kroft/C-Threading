@@ -13,9 +13,11 @@
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Name="multiThreadingButton" Content="Change Threading &#xD;&#xA;Type" Margin="637,141,0,0" Height="63" Width="143" Click="Button_Click_Multithread" Grid.Column="1" VerticalAlignment="Top"/>
-        <Button Name="singleThreadingButton" Content="Next Day" Margin="476,141,0,0" VerticalAlignment="Top" Height="63" Width="143" Click="Button_Click_Singlethread" Grid.Column="1"/>
-        <Button Name="newbutton" Content="Produce Power" Margin="307,141,0,0" VerticalAlignment="Top" Height="63" Width="142" Grid.Column="1" Click="newbutton_Click"/>
+        <Button Name="multiThreadingButton" Content="Change Threading &#xD;&#xA;Type" Margin="564,141,0,0" Height="48" Width="108" Click="Button_Click_Multithread" Grid.Column="1" VerticalAlignment="Top"/>
+        <Button Name="singleThreadingButton" Content="Next Day" Margin="431,140,0,0" VerticalAlignment="Top" Height="50" Width="115" Click="Button_Click_Singlethread" Grid.Column="1"/>
+        <Button Name="newbutton" Content="Produce &#xD;&#xA;Power" Margin="307,141,0,0" VerticalAlignment="Top" Height="48" Width="108" Grid.Column="1" Click="newbutton_Click"/>
+        <Button x:Name="startPowerSupply" Content="Supply Power" Margin="689,140,0,0" Height="48" Width="108" Click="Button_Click_SupplyPower" Grid.Column="1" VerticalAlignment="Top"/>
+
 
         <StackPanel Grid.ColumnSpan="2">
             <ComboBox x:Name="houses" PlaceholderText="Select the number of houses to spawn" Margin="312,98,0,0" Height="34" Width="464" SelectionChanged="amountOfHouses_SelectionChanged" IsHitTestVisible="True" IsEditable="True">
@@ -49,6 +51,5 @@
         <TextBlock x:Name="TotalSupplyResult" TextWrapping="Wrap" Text="{Binding}" Margin="133,107,683,471" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
         <TextBlock x:Name="ThreadingTypeResult" TextWrapping="Wrap" Text="{Binding}" SelectionChanged="TextBlock_SelectionChanged" Height="22" Width="84"/>
         <TextBlock x:Name="ThreadingTypeText" TextWrapping="Wrap" Text="{Binding}" Margin="133,131,614,447" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
-
     </Grid>
 </Page>

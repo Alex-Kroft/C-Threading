@@ -32,7 +32,7 @@ namespace EnergyThreading
             if (instance == null)
             {
                 // pass time of day & amount of houses to instance
-                instance = new Instance(MyFrame);
+                instance = new Instance(MyFrame, 100);
                 instance.initialize();
                 TotalDemandResult.Text = instance.totalDemand.ToString();
                 TotalSupplyResult.Text = instance.getCity.storedEnergy.ToString();
@@ -86,15 +86,31 @@ namespace EnergyThreading
 
         public void Button_Click_Singlethread(object sender, RoutedEventArgs e)
         {
-           instance.update();
-           TotalDemandResult.Text = instance.totalDemand.ToString();
+            int amountOfHouses = instance.getCity.getHouses().Count;
+            Boolean singleThread = instance.getCity.getSingleThread;
+
+            instance = new Instance(MyFrame, amountOfHouses);
+            instance.initialize();
+            TotalDemandResult.Text = instance.totalDemand.ToString();
+            TotalSupplyResult.Text = instance.getCity.storedEnergy.ToString();
+            TimeOfDayResult.Text = checkTime().ToString();
+
+            if (!singleThread)
+            {
+                instance.getCity.setSingleThread(false);
+                ThreadingTypeText.Text = "MultiThread";
+            }
+            else
+            {
+                instance.getCity.setSingleThread(true);
+                ThreadingTypeText.Text = "SingleThread";
+            }
+
+            _timeOfDay = checkTime();
         }
+        
+        
         private void MyFrame_Navigated(object sender, NavigationEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -122,9 +138,16 @@ namespace EnergyThreading
             TotalSupplyResult.Text = instance.getCity.storedEnergy.ToString();
         }
 
+
+
         private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Button_Click_SupplyPower(object sender, RoutedEventArgs e)
+        {
+            instance.update();
         }
     }
 }

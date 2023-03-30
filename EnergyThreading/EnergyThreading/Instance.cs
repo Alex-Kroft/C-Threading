@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Shapes;
 using Windows.System;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Threading;
+using Windows.Globalization;
 
 namespace EnergyThreading
 {
@@ -23,11 +24,11 @@ namespace EnergyThreading
         Object locker = new object();
 
 
-        public Instance(Frame frame)
+        public Instance(Frame frame, int amountOfHouses)
         {
             this.frame = frame;
             CompositionTarget.Rendering += OnCompositionTargetRendering;
-            this.city = new City(100, true);
+            this.city = new City(amountOfHouses, true);
             this.totalDemand = city.total;
 
         }
