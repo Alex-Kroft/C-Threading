@@ -24,13 +24,11 @@
                 <x:Int32>50</x:Int32>
                 <x:Int32>100</x:Int32>
                 <x:Int32>150</x:Int32>
-                <x:Int32>200</x:Int32>
-                <x:Int32>250</x:Int32>
-                <x:Int32>300</x:Int32>
-                <x:Int32>350</x:Int32>
-                <x:Int32>400</x:Int32>
-                <x:Int32>450</x:Int32>
                 <x:Int32>500</x:Int32>
+                <x:Int32>1000</x:Int32>
+                <x:Int32>1500</x:Int32>
+                <x:Int32>3000</x:Int32>
+                <x:Int32>5000</x:Int32>
             </ComboBox>
         </StackPanel>
 

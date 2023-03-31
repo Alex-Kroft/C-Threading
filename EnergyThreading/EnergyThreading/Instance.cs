@@ -29,7 +29,7 @@ namespace EnergyThreading
             this.frame = frame;
             CompositionTarget.Rendering += OnCompositionTargetRendering;
             this.city = new City(amountOfHouses, true, availableSupply);
-            this.totalDemand = city.total;
+            this.totalDemand = city.totalDemand;
 
         }
         public City getCity { get { return city; } }
@@ -43,14 +43,14 @@ namespace EnergyThreading
         {
             city.calculateTotalDemand();
             city.distributeEnergyToHouses();
-            totalDemand = city.total;
+            totalDemand = city.totalDemand;
 
         }
 
         public void initialize()
         {
             city.calculateTotalDemand();
-            totalDemand = city.total;
+            totalDemand = city.totalDemand;
         }
 
         public void draw()
@@ -60,14 +60,13 @@ namespace EnergyThreading
             canvas.Height = frame.ActualHeight;
 
             int housesPerRow = 25;
-            if (city.getHouses().Count > 250) { housesPerRow = 50; }
-            else if (city.getHouses().Count > 500) { housesPerRow = 75; }
-            else if (city.getHouses().Count > 1000) { housesPerRow = 100; }
-            else if (city.getHouses().Count > 2000) { housesPerRow = 200; }
-            else if (city.getHouses().Count > 3000) { housesPerRow = 300; }
-            else if (city.getHouses().Count > 4000) { housesPerRow = 400; }
-
             int houseCount = city.getHouses().Count;
+
+            if (houseCount > 10000) { housesPerRow = 400; }
+            else if (houseCount > 7500) { housesPerRow = 300; }
+            else if (houseCount > 5000) { housesPerRow = 200; }
+            else if (houseCount > 2500) { housesPerRow = 100; }
+
             int rowCount = (int)Math.Ceiling((double)houseCount / housesPerRow);
 
             double rowHeight = canvas.Height / rowCount;

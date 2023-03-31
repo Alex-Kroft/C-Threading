@@ -57,7 +57,8 @@ namespace EnergyThreading
             {
                 var selectedAmount =(int)houses.SelectedItem;
                 instance.getCity.createHouses(selectedAmount);
-
+                HousesAmountResult.Text = instance.getCity.getHouses().Count.ToString() + " houses";
+                TotalDemandResult.Text = instance.totalDemand.ToString();
             }
         }
 
@@ -131,6 +132,8 @@ namespace EnergyThreading
             stopwatch2.Reset();
 
             TotalSupplyResult.Text = instance.getCity.generator.powerSupply.ToString();
+            instance.totalDemand = instance.getCity.calculateTotalDemand();
+            TotalDemandResult.Text = instance.totalDemand.ToString();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace EnergyThreading
         public Generator generator { get; set; }                                                
         private List<Thread> threads;
         private bool singleThread { get; set; }
-        public float total;
+        public float totalDemand;
         public float storedEnergy;
         private readonly object lockObject = new object();
         private Semaphore semaphore = new Semaphore(4, 4); // Initialize a semaphore with a count of 4
@@ -210,13 +210,13 @@ namespace EnergyThreading
 
         public float calculateTotalDemand()
         {
-            total = 0;
+            totalDemand = 0;
 
             if (singleThread == true)
             {
                 foreach (House house in houses)
                 {
-                    total += house.currentDemand;
+                    totalDemand += house.currentDemand;
                 }
             }
             else
@@ -231,7 +231,7 @@ namespace EnergyThreading
                 countdownEvent.Wait();
             }
 
-            return total;
+            return totalDemand;
         }
 
         private void addToTotalDemand(object data)
@@ -241,7 +241,7 @@ namespace EnergyThreading
 
             lock (lockObject)
             {
-                total += house.currentDemand;
+                totalDemand += house.currentDemand;
             }
             countdownEvent.Signal();
         }
