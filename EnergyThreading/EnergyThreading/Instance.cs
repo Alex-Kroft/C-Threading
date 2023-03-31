@@ -24,11 +24,11 @@ namespace EnergyThreading
         Object locker = new object();
 
 
-        public Instance(Frame frame, int amountOfHouses)
+        public Instance(Frame frame, int amountOfHouses, float availableSupply)
         {
             this.frame = frame;
             CompositionTarget.Rendering += OnCompositionTargetRendering;
-            this.city = new City(amountOfHouses, true);
+            this.city = new City(amountOfHouses, true, availableSupply);
             this.totalDemand = city.total;
 
         }
@@ -49,7 +49,6 @@ namespace EnergyThreading
 
         public void initialize()
         {
-            totalDemand = 0;
             city.calculateTotalDemand();
             totalDemand = city.total;
         }

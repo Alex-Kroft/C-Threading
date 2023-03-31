@@ -13,7 +13,7 @@ namespace EnergyThreading
     public class City
     {
         private List<House> houses { get; set; }
-        public Generator generator = new Generator("Alex");                                                
+        public Generator generator { get; set; }                                                
         private List<Thread> threads;
         private bool singleThread { get; set; }
         public float total;
@@ -21,13 +21,13 @@ namespace EnergyThreading
         private readonly object lockObject = new object();
         private Semaphore semaphore = new Semaphore(4, 4); // Initialize a semaphore with a count of 4
 
-        public City(int houseAmount, bool singleThread) {
+        public City(int houseAmount, bool singleThread, float availableSupply) {
             houses = new List<House>();
             createHouses(houseAmount);
+            generator = new Generator("Alex", availableSupply);
 
             threads = new List<Thread>();
             this.singleThread = false;
-            storedEnergy = 0;
         }
 
         public List<House> getHouses()
@@ -132,25 +132,7 @@ namespace EnergyThreading
                 if (houses != null && generator != null)
                 {
                     List<Thread> threads = new List<Thread>();
-                    //Commented out the thread creation code that makes a thread for each house
-                    /*
-                    foreach (House house in houses)
-                    {
-                        lock (lockObject)
-                        {
-                            Thread t = new Thread(() =>
-                            {
-                                lock (lockObject) // acquire the lock before accessing the generator
-                                {
-                                    generator.producePower(house.currentDemand);
-                                }
-                            });
-                            threads.Add(t);
-                            t.Start();
-                        }
-                    }
-                    */
-
+                 
                     int threadAmountToSplit = 5;    //How many threads to make
                     int housesPerThread = houses.Count / threadAmountToSplit;
                     int extraHouses = houses.Count % threadAmountToSplit;   //When the number is not divisible by threadAmountToSplit

@@ -34,11 +34,11 @@ namespace EnergyThreading
             this.InitializeComponent();
             if (instance == null)
             {
-                // pass time of day & amount of houses to instance
-                instance = new Instance(MyFrame, 100);
+                // pass amount of houses and start supply to instance
+                instance = new Instance(MyFrame, 100, 0);
                 instance.initialize();
                 TotalDemandResult.Text = instance.totalDemand.ToString();
-                TotalSupplyResult.Text = instance.getCity.storedEnergy.ToString();
+                TotalSupplyResult.Text = instance.getCity.generator.powerSupply.ToString();
 
 
                 if (!instance.getCity.getSingleThread) {
@@ -64,41 +64,17 @@ namespace EnergyThreading
             }
         }
 
-        /*private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            instance.update();
-            houses.Text = instance.totalDemand.ToString();
-        }*/
-/*
-        public TimeSpan checkTime()
-        {
-            DateTime _startStopwatch;
-            _startStopwatch = DateTime.Now;
-            TimeSpan elapsed = DateTime.Now - _startStopwatch;
-            if (timePicker.SelectedTime != null)
-            {
-                TimeSpan currentTimeOfDay = (TimeSpan)(elapsed + timePicker.SelectedTime);
-                return currentTimeOfDay;
-            }
-            else
-            {
-                return TimeSpan.Zero;
-            }
-
-        }*/
-
 
         public void Button_Click_Next_Day(object sender, RoutedEventArgs e)
         {
             int amountOfHouses = instance.getCity.getHouses().Count;
             Boolean singleThread = instance.getCity.getSingleThread;
-            float remainingSupply = instance.getCity.storedEnergy;
+            float remainingSupply = instance.getCity.generator.powerSupply;
 
-            instance = new Instance(MyFrame, amountOfHouses);
-            instance.getCity.storedEnergy = remainingSupply;
+            instance = new Instance(MyFrame, amountOfHouses, remainingSupply);
             instance.initialize();
             TotalDemandResult.Text = instance.totalDemand.ToString();
-            TotalSupplyResult.Text = instance.getCity.storedEnergy.ToString();
+            TotalSupplyResult.Text = instance.getCity.generator.powerSupply.ToString();
 
             if (!singleThread)
             {
@@ -141,11 +117,11 @@ namespace EnergyThreading
             {
                 instance.getCity.produceEnergyForHouses();
             });
-            TotalSupplyResult.Text = instance.getCity.storedEnergy.ToString();
-
+            
             stopwatch1.Stop();
             double elapsedGen = stopwatch1.Elapsed.TotalMilliseconds;
             generateTimerResult.Text = elapsedGen.ToString() + "ms";
+            TotalSupplyResult.Text = instance.getCity.generator.powerSupply.ToString();
             stopwatch1.Reset();
 
         }
@@ -165,6 +141,8 @@ namespace EnergyThreading
             double elapsedSupply = stopwatch2.Elapsed.TotalMilliseconds;
             supplyTimerResult.Text = elapsedSupply.ToString() + "ms";
             stopwatch2.Reset();
+
+            TotalSupplyResult.Text = instance.getCity.generator.powerSupply.ToString();
         }
     }
 }

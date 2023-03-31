@@ -9,10 +9,11 @@ namespace EnergyThreading
     public class Generator
     {
         private string name;
-        public float powerSupply = 0;
+        public float powerSupply;
 
-        public Generator(string Name) {
+        public Generator(string Name, float currentSupply) {
             name = Name;
+            powerSupply = currentSupply;
         }
 
         public void delegatePower(float wantedEnergy)
