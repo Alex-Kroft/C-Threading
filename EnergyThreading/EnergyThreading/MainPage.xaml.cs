@@ -49,12 +49,19 @@ namespace EnergyThreading
                 }
             }
         }
-        
+
         public void amountOfHouses_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (houses.SelectedItem != null)
             {
-                var selectedAmount =(int)houses.SelectedItem;
+                var selectedAmount = (int)houses.SelectedItem;
+                if (instance.getCity.getHouses().Count + selectedAmount > 50000)
+                {
+                    // Display a message to the user that no more houses can be added.
+                    var messageDialog = new Windows.UI.Popups.MessageDialog("No more houses can be added.");
+                    messageDialog.ShowAsync();
+                    return;
+                }
                 instance.getCity.createHouses(selectedAmount);
                 HousesAmountResult.Text = instance.getCity.getHouses().Count.ToString() + " houses";
 

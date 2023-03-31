@@ -63,11 +63,7 @@ namespace EnergyThreading
             int housesPerRow = 25;
             int houseCount = city.getHouses().Count;
 
-            if (houseCount > 30000) { housesPerRow = 1400; }
-            else if (houseCount > 20000) { housesPerRow = 800; }
-            else if (houseCount > 15000) { housesPerRow = 600; }
-            else if (houseCount > 10000) { housesPerRow = 400; }
-            else if (houseCount > 7500) { housesPerRow = 300; }
+            if (houseCount > 7500) { housesPerRow = 300; }
             else if (houseCount > 5000) { housesPerRow = 200; }
             else if (houseCount > 2500) { housesPerRow = 100; }
 
