@@ -27,15 +27,14 @@ namespace EnergyThreading
         public Instance(Frame frame, int amountOfHouses, float availableSupply)
         {
             this.frame = frame;
-            CompositionTarget.Rendering += OnCompositionTargetRendering;
             this.city = new City(amountOfHouses, true, availableSupply);
             this.totalDemand = city.totalDemand;
-
+            draw();
         }
         public City getCity { get { return city; } }
         private void OnCompositionTargetRendering(object sender, object e)
         {
-            draw();
+            
             city.calculateTotalDemand();
         }
 
@@ -56,8 +55,16 @@ namespace EnergyThreading
         public void draw()
         {
             Canvas canvas = new Canvas();
-            canvas.Width = frame.ActualWidth;
-            canvas.Height = frame.ActualHeight;
+            if (frame.ActualHeight == 0)
+            {
+                canvas.Height = frame.Height;
+                canvas.Width = frame.Width;
+            } else
+            {
+                canvas.Width = frame.ActualWidth;
+                canvas.Height = frame.ActualHeight;
+            }
+            
 
             int housesPerRow = 25;
             int houseCount = city.getHouses().Count;

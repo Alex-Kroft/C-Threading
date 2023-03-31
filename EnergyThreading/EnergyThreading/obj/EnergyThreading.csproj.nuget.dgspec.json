@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\josta\\Documents\\GitHub\\C-Threading\\EnergyThreading\\EnergyThreading\\EnergyThreading.csproj": {}
+    "C:\\Users\\homan\\Documents\\GitHub\\C-Threading\\EnergyThreading\\EnergyThreading\\EnergyThreading.csproj": {}
   },
   "projects": {
-    "C:\\Users\\josta\\Documents\\GitHub\\C-Threading\\EnergyThreading\\EnergyThreading\\EnergyThreading.csproj": {
+    "C:\\Users\\homan\\Documents\\GitHub\\C-Threading\\EnergyThreading\\EnergyThreading\\EnergyThreading.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\josta\\Documents\\GitHub\\C-Threading\\EnergyThreading\\EnergyThreading\\EnergyThreading.csproj",
+        "projectUniqueName": "C:\\Users\\homan\\Documents\\GitHub\\C-Threading\\EnergyThreading\\EnergyThreading\\EnergyThreading.csproj",
         "projectName": "EnergyThreading",
-        "projectPath": "C:\\Users\\josta\\Documents\\GitHub\\C-Threading\\EnergyThreading\\EnergyThreading\\EnergyThreading.csproj",
-        "packagesPath": "C:\\Users\\josta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\josta\\Documents\\GitHub\\C-Threading\\EnergyThreading\\EnergyThreading\\obj\\",
+        "projectPath": "C:\\Users\\homan\\Documents\\GitHub\\C-Threading\\EnergyThreading\\EnergyThreading\\EnergyThreading.csproj",
+        "packagesPath": "C:\\Users\\homan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\homan\\Documents\\GitHub\\C-Threading\\EnergyThreading\\EnergyThreading\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -19,7 +19,7 @@
           "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\josta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\homan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

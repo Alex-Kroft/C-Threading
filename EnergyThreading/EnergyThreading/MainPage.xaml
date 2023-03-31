@@ -32,7 +32,7 @@
             </ComboBox>
         </StackPanel>
 
-        <Frame x:Name="MyFrame" Height="315" Margin="22,254,269,0" VerticalAlignment="Top" Navigated="MyFrame_Navigated" Grid.Column="1"/>
+        <Frame x:Name="MyFrame" Height="315" Width="608.8" Margin="22,254,269,0" VerticalAlignment="Top" Navigated="MyFrame_Navigated" Grid.Column="1"/>
         <Image Source="Assets/generator.png" HorizontalAlignment="Left" Height="315" Margin="648,0,0,30" VerticalAlignment="Bottom" Width="203" UseLayoutRounding="True" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Grid.Column="1" />
 
         <TextBlock x:Name="resultBox" TextWrapping="Wrap" Text="Results:" Margin="22,28,506,550" Grid.Column="1"/>

@@ -47,7 +47,6 @@ namespace EnergyThreading
                 {
                     ThreadingTypeText.Text = "SingleThread";
                 }
-                
             }
         }
         
@@ -61,6 +60,7 @@ namespace EnergyThreading
 
                 instance.totalDemand = instance.getCity.calculateTotalDemand();
                 TotalDemandResult.Text = instance.totalDemand.ToString();
+                instance.draw();
             }
         }
 
@@ -72,6 +72,7 @@ namespace EnergyThreading
 
             instance = new Instance(MyFrame, amountOfHouses, remainingSupply);
             instance.initialize();
+            instance.draw();
             TotalDemandResult.Text = instance.totalDemand.ToString();
             TotalSupplyResult.Text = instance.getCity.generator.powerSupply.ToString();
 
@@ -117,6 +118,7 @@ namespace EnergyThreading
             });
             
             stopwatch1.Stop();
+            instance.draw();
             double elapsedGen = stopwatch1.Elapsed.TotalMilliseconds;
             generateTimerResult.Text = elapsedGen.ToString() + "ms";
             TotalSupplyResult.Text = instance.getCity.generator.powerSupply.ToString();
@@ -129,6 +131,7 @@ namespace EnergyThreading
             stopwatch2.Start();
             instance.update();
             stopwatch2.Stop();
+            instance.draw();
             double elapsedSupply = stopwatch2.Elapsed.TotalMilliseconds;
             supplyTimerResult.Text = elapsedSupply.ToString() + "ms";
             stopwatch2.Reset();
