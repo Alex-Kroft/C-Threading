@@ -39,7 +39,7 @@ namespace EnergyThreading
                 instance.initialize();
                 TotalDemandResult.Text = instance.totalDemand.ToString();
                 TotalSupplyResult.Text = instance.getCity.generator.powerSupply.ToString();
-
+                HousesAmountResult.Text = instance.getCity.getHouses().Count.ToString() + " houses";
 
                 if (!instance.getCity.getSingleThread) {
                     ThreadingTypeText.Text = "MultiThread";
@@ -57,7 +57,7 @@ namespace EnergyThreading
             {
                 var selectedAmount =(int)houses.SelectedItem;
                 instance.getCity.createHouses(selectedAmount);
-                //houseCountText.Text = instance.getCity.getHouses().Count.ToString();
+
             }
         }
 

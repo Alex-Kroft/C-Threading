@@ -20,7 +20,7 @@
 
 
         <StackPanel Grid.ColumnSpan="2">
-            <ComboBox x:Name="houses" PlaceholderText="Select the number of houses to spawn" Margin="312,98,0,0" Height="34" Width="464" SelectionChanged="amountOfHouses_SelectionChanged" IsHitTestVisible="True">
+            <ComboBox x:Name="houses" PlaceholderText="Select the number of houses to spawn" Margin="312,98,0,0" Height="34" Width="374" SelectionChanged="amountOfHouses_SelectionChanged" IsHitTestVisible="True">
                 <x:Int32>50</x:Int32>
                 <x:Int32>100</x:Int32>
                 <x:Int32>150</x:Int32>
@@ -37,20 +37,20 @@
         <Frame x:Name="MyFrame" Height="315" Margin="22,254,269,0" VerticalAlignment="Top" Navigated="MyFrame_Navigated" Grid.Column="1"/>
         <Image Source="Assets/generator.png" HorizontalAlignment="Left" Height="315" Margin="648,0,0,30" VerticalAlignment="Bottom" Width="203" UseLayoutRounding="True" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Grid.Column="1" />
 
-        <TextBlock x:Name="resultBox" TextWrapping="Wrap" Text="Results:" Margin="22,28,506,550" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
-        <TextBlock x:Name="TotalDemand" TextWrapping="Wrap" Text="Total Demand:" Margin="22,74,786,504" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
-        <TextBlock x:Name="TotalSupply" TextWrapping="Wrap" Text="Total Supply:" Margin="22,98,794,480" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
-        <TextBlock x:Name="ThreadingType" TextWrapping="Wrap" Text="Threading type:" Margin="22,122,778,456" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
-        <TextBlock x:Name="generateTime" TextWrapping="Wrap" Text="Time it took to generate:" Margin="22,146,714,432" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
-        <TextBlock x:Name="supplyTimer" TextWrapping="Wrap" Text="Time it took to supply:" Margin="22,170,735,408" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
+        <TextBlock x:Name="resultBox" TextWrapping="Wrap" Text="Results:" Margin="22,28,506,550" Grid.Column="1"/>
+        <TextBlock x:Name="TotalDemand" TextWrapping="Wrap" Text="Total Demand:" Margin="22,74,786,504"  Grid.Column="1"/>
+        <TextBlock x:Name="TotalSupply" TextWrapping="Wrap" Text="Total Supply:" Margin="22,98,794,480" Grid.Column="1"/>
+        <TextBlock x:Name="ThreadingType" TextWrapping="Wrap" Text="Threading type:" Margin="22,122,778,456" Grid.Column="1"/>
+        <TextBlock x:Name="generateTime" TextWrapping="Wrap" Text="Time it took to generate:" Margin="22,146,714,432" Grid.Column="1"/>
+        <TextBlock x:Name="supplyTimer" TextWrapping="Wrap" Text="Time it took to supply:" Margin="22,170,735,408" Grid.Column="1"/>
 
-        <TextBlock x:Name="TimeOfDayResult" TextWrapping="Wrap" Text="{Binding}" Margin="194,52,622,526" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
-        <TextBlock x:Name="TotalDemandResult" TextWrapping="Wrap" Text="{Binding}" Margin="194,74,622,504" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
-        <TextBlock x:Name="TotalSupplyResult" TextWrapping="Wrap" Text="{Binding}" Margin="194,98,622,480" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
-        <TextBlock x:Name="ThreadingTypeResult" TextWrapping="Wrap" Text="{Binding}" SelectionChanged="TextBlock_SelectionChanged" Height="22" Width="84"/>
-        <TextBlock x:Name="ThreadingTypeText" TextWrapping="Wrap" Text="{Binding}" Margin="194,122,553,456" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
-        <TextBlock x:Name="generateTimerResult" TextWrapping="Wrap" Text="{Binding}" Margin="194,146,553,432" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
-        <TextBlock x:Name="supplyTimerResult" TextWrapping="Wrap" Text="{Binding}" Margin="194,169,553,409" SelectionChanged="TextBlock_SelectionChanged" Grid.Column="1"/>
+        <TextBlock x:Name="HousesAmountResult" TextWrapping="Wrap" Text="{Binding}" Margin="703,105,113,473"  Grid.Column="1"/>
+        <TextBlock x:Name="TotalDemandResult" TextWrapping="Wrap" Text="{Binding}" Margin="194,74,622,504"  Grid.Column="1"/>
+        <TextBlock x:Name="TotalSupplyResult" TextWrapping="Wrap" Text="{Binding}" Margin="194,98,622,480"  Grid.Column="1"/>
+        <TextBlock x:Name="ThreadingTypeResult" TextWrapping="Wrap" Text="{Binding}"  Height="22" Width="84"/>
+        <TextBlock x:Name="ThreadingTypeText" TextWrapping="Wrap" Text="{Binding}" Margin="194,122,553,456"  Grid.Column="1"/>
+        <TextBlock x:Name="generateTimerResult" TextWrapping="Wrap" Text="{Binding}" Margin="194,146,553,432"  Grid.Column="1"/>
+        <TextBlock x:Name="supplyTimerResult" TextWrapping="Wrap" Text="{Binding}" Margin="194,169,553,409"  Grid.Column="1"/>
 
     </Grid>
 </Page>
