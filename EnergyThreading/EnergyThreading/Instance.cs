@@ -12,6 +12,8 @@ using Windows.System;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Threading;
 using Windows.Globalization;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
 
 namespace EnergyThreading
 {
@@ -31,7 +33,7 @@ namespace EnergyThreading
             draw();
         }
         public City getCity { get { return city; } }
-        
+
         public void update()
         {
             city.calculateTotalDemand();
@@ -46,43 +48,43 @@ namespace EnergyThreading
             totalDemand = city.totalDemand;
         }
 
-        public void draw()
+        public async void draw()
         {
-            Canvas canvas = new Canvas();
-            if (frame.ActualHeight == 0)
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                canvas.Height = frame.Height;
-                canvas.Width = frame.Width;
-            } else
-            {
-                canvas.Width = frame.ActualWidth;
-                canvas.Height = frame.ActualHeight;
-            }
-            
-            int housesPerRow = 25;
-            int houseCount = city.getHouses().Count;
+                Canvas canvas = new Canvas();
 
-            if (houseCount > 7500) { housesPerRow = 300; }
-            else if (houseCount > 5000) { housesPerRow = 200; }
-            else if (houseCount > 2500) { housesPerRow = 100; }
-
-            int rowCount = (int)Math.Ceiling((double)houseCount / housesPerRow);
-
-            double rowHeight = canvas.Height / rowCount;
-            double columnWidth = canvas.Width / housesPerRow;
-
-            int currentRow = 0;
-            int currentColumn = 0;
-
-            foreach (House house in city.getHouses())
-            {
-                lock (this.locker)
+                if (frame.ActualHeight == 0)
                 {
-                    Rectangle rect = new Rectangle
-                    {
-                        Height = rowHeight - 1,
-                        Width = columnWidth - 1
-                    };
+                    canvas.Height = frame.Height;
+                    canvas.Width = frame.Width;
+                }
+                else
+                {
+                    canvas.Width = frame.ActualWidth;
+                    canvas.Height = frame.ActualHeight;
+                }
+
+                int housesPerRow = 25;
+                int houseCount = city.getHouses().Count;
+
+                if (houseCount > 7500) { housesPerRow = 300; }
+                else if (houseCount > 5000) { housesPerRow = 200; }
+                else if (houseCount > 2500) { housesPerRow = 100; }
+
+                int rowCount = (int)Math.Ceiling((double)houseCount / housesPerRow);
+
+                double rowHeight = canvas.Height / rowCount;
+                double columnWidth = canvas.Width / housesPerRow;
+
+                int currentRow = 0;
+                int currentColumn = 0;
+
+                foreach (House house in city.getHouses())
+                {
+                    Rectangle rect = new Rectangle();
+                    rect.Height = rowHeight - 1;
+                    rect.Width = columnWidth - 1;
 
                     if (house.isSatisfied())
                     {
@@ -98,15 +100,16 @@ namespace EnergyThreading
                     canvas.Children.Add(rect);
 
                     currentColumn++;
-                }
-                if (currentColumn == housesPerRow)
-                {
-                    currentRow++;
-                    currentColumn = 0;
-                }
-            }
 
-            this.frame.Content = canvas;
+                    if (currentColumn == housesPerRow)
+                    {
+                        currentRow++;
+                        currentColumn = 0;
+                    }
+                }
+
+                frame.Content = canvas;
+            });
         }
     }
 }

@@ -50,7 +50,7 @@ namespace EnergyThreading
             }
         }
 
-        public void amountOfHouses_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public async void amountOfHouses_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (houses.SelectedItem != null)
             {
@@ -67,11 +67,15 @@ namespace EnergyThreading
 
                 instance.totalDemand = instance.getCity.calculateTotalDemand();
                 TotalDemandResult.Text = instance.totalDemand.ToString();
-                instance.draw();
+
+                await Task.Run(() =>
+                {
+                    instance.draw();
+                });
             }
         }
 
-        public void Button_Click_Next_Day(object sender, RoutedEventArgs e)
+        public async void Button_Click_Next_Day(object sender, RoutedEventArgs e)
         {
             int amountOfHouses = instance.getCity.getHouses().Count;
             Boolean singleThread = instance.getCity.getSingleThread;
@@ -79,7 +83,10 @@ namespace EnergyThreading
 
             instance = new Instance(MyFrame, amountOfHouses, remainingSupply);
             instance.initialize();
-            instance.draw();
+            await Task.Run(() =>
+            {
+                instance.draw();
+            });
             TotalDemandResult.Text = instance.totalDemand.ToString();
             TotalSupplyResult.Text = instance.getCity.generator.powerSupply.ToString();
 
@@ -132,12 +139,17 @@ namespace EnergyThreading
 
         }
 
-        private void Button_Click_SupplyPower(object sender, RoutedEventArgs e)
+        private async void Button_Click_SupplyPower(object sender, RoutedEventArgs e)
         {
             stopwatch2.Start();
             instance.update();
             stopwatch2.Stop();
-            instance.draw();
+
+            await Task.Run(() =>
+            {
+                instance.draw();
+            });
+            
             double elapsedSupply = stopwatch2.Elapsed.TotalMilliseconds;
             supplyTimerResult.Text = elapsedSupply.ToString() + "ms";
             stopwatch2.Reset();
