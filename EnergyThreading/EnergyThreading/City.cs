@@ -21,7 +21,7 @@ namespace EnergyThreading
         private readonly object lockObject = new object();
         private Semaphore semaphore = new Semaphore(4, 4); // Initialize a semaphore with a count of 4
 
-        public City(int houseAmount, bool singleThread, float availableSupply) {
+        public City(int houseAmount, float availableSupply) {
             houses = new List<House>();
             createHouses(houseAmount);
             generator = new Generator("Alex", availableSupply);
@@ -244,10 +244,6 @@ namespace EnergyThreading
                 totalDemand += house.currentDemand;
             }
             countdownEvent.Signal();
-        }
-        public void loadContent()
-        {
-
         }
     }
 }

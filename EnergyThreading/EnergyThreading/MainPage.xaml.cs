@@ -125,7 +125,6 @@ namespace EnergyThreading
             });
             
             stopwatch1.Stop();
-            instance.draw();
             double elapsedGen = stopwatch1.Elapsed.TotalMilliseconds;
             generateTimerResult.Text = elapsedGen.ToString() + "ms";
             TotalSupplyResult.Text = instance.getCity.generator.powerSupply.ToString();

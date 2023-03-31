@@ -17,7 +17,6 @@ namespace EnergyThreading
 {
     public class Instance
     {
-        private Stopwatch stopwatch;
         private City city;
         public float totalDemand;
         private Frame frame;
@@ -27,7 +26,7 @@ namespace EnergyThreading
         public Instance(Frame frame, int amountOfHouses, float availableSupply)
         {
             this.frame = frame;
-            this.city = new City(amountOfHouses, true, availableSupply);
+            this.city = new City(amountOfHouses, availableSupply);
             this.totalDemand = city.totalDemand;
             draw();
         }
@@ -79,9 +78,11 @@ namespace EnergyThreading
             {
                 lock (this.locker)
                 {
-                    Rectangle rect = new Rectangle();
-                    rect.Height = rowHeight - 1;
-                    rect.Width = columnWidth - 1;
+                    Rectangle rect = new Rectangle
+                    {
+                        Height = rowHeight - 1,
+                        Width = columnWidth - 1
+                    };
 
                     if (house.isSatisfied())
                     {
@@ -106,16 +107,6 @@ namespace EnergyThreading
             }
 
             this.frame.Content = canvas;
-        }
-
-       public void timeCounter()
-        {
-
-        }
-
-        public void getRunPerformance()
-        {
-
         }
     }
 }
