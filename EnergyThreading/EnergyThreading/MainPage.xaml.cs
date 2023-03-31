@@ -50,20 +50,16 @@ namespace EnergyThreading
                 
             }
         }
-
         
         public void amountOfHouses_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //instance.update();
             if (houses.SelectedItem != null)
             {
-                //ComboBoxItem cbi1 = (ComboBoxItem)(sender as ComboBox).SelectedItem;  
-                //ComboBoxItem cbi = (ComboBoxItem)houses.SelectedItem;
                 var selectedAmount =(int)houses.SelectedItem;
                 instance.getCity.createHouses(selectedAmount);
+                //houseCountText.Text = instance.getCity.getHouses().Count.ToString();
             }
         }
-
 
         public void Button_Click_Next_Day(object sender, RoutedEventArgs e)
         {
@@ -88,7 +84,6 @@ namespace EnergyThreading
             }
 
         }
-        
         
         private void MyFrame_Navigated(object sender, NavigationEventArgs e)
         {
@@ -123,13 +118,6 @@ namespace EnergyThreading
             generateTimerResult.Text = elapsedGen.ToString() + "ms";
             TotalSupplyResult.Text = instance.getCity.generator.powerSupply.ToString();
             stopwatch1.Reset();
-
-        }
-
-
-
-        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
-        {
 
         }
 
