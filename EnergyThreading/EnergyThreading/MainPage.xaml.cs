@@ -58,6 +58,8 @@ namespace EnergyThreading
                 var selectedAmount =(int)houses.SelectedItem;
                 instance.getCity.createHouses(selectedAmount);
                 HousesAmountResult.Text = instance.getCity.getHouses().Count.ToString() + " houses";
+
+                instance.totalDemand = instance.getCity.calculateTotalDemand();
                 TotalDemandResult.Text = instance.totalDemand.ToString();
             }
         }
