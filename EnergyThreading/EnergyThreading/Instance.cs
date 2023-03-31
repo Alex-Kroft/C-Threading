@@ -32,12 +32,7 @@ namespace EnergyThreading
             draw();
         }
         public City getCity { get { return city; } }
-        private void OnCompositionTargetRendering(object sender, object e)
-        {
-            
-            city.calculateTotalDemand();
-        }
-
+        
         public void update()
         {
             city.calculateTotalDemand();
