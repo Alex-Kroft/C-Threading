@@ -102,11 +102,6 @@ namespace EnergyThreading
             }
 
         }
-        
-        private void MyFrame_Navigated(object sender, NavigationEventArgs e)
-        {
-
-        }
 
         private void Button_Click_Change_Threading(object sender, RoutedEventArgs e)
         {
